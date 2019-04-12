@@ -1,0 +1,1549 @@
+\documentclass[aps,pra,onecolumn,notitlepage,superscriptaddress]{revtex4-1}
+
+%\input{myQcircuit}
+\usepackage{graphicx,color}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{framed}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+
+%  Sets
+\newcommand{\set}[1]{\mathsf{#1}}
+\newcommand{\grp}[1]{\mathsf{#1}}
+\newcommand{\spc}[1]{\mathcal{#1}}
+
+% Integrals
+
+\def\d{{\rm d}}
+
+% Linear structures
+\newcommand{\Span}{{\mathsf{Span}}}
+\newcommand{\Lin}{\mathsf{Lin}}
+\newcommand{\rank}{\mathsf{rank}}
+
+\def\>{\rangle}
+\def\<{\langle}
+\def\kk{\>\!\>}
+\def\bb{\<\!\<}
+\newcommand{\st}[1]{\mathbf{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+% Linear maps
+\newcommand{\map}[1]{\mathcal{#1}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\diag}{\mathsf{diag}}
+
+
+%  Operational notions
+\newcommand{\op}[1]{\operatorname{#1}}
+
+\newcommand{\St}{{\mathsf{St}}}
+\newcommand{\Eff}{{\mathsf{Eff}}}
+\newcommand{\Pur}{{\mathsf{Pur}}}
+\newcommand{\Transf}{{\mathsf{Transf}}}
+\newcommand{\Chan}{{\mathsf{Chan}}}
+
+
+%   By Mo
+\newcommand{\arccot}{\mathrm{arccot}\,}
+
+%  Miscellanea
+\newcommand\myuparrow{\mathord{\uparrow}}
+\newcommand\mydownarrow{\mathord{\downarrow}}
+\newcommand\h{{\scriptstyle \frac 12}}
+
+% Environments
+\newtheorem{theo}{Theorem}
+\newtheorem{ax}{Axiom}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{defi}{Definition}
+
+
+\newtheorem{rem}{Remark}
+\newtheorem{ex}{Exercise}
+
+\newtheorem{proper}{Property}
+
+\def\Proof{{\bf Proof.~}}
+\def\qed{$\blacksquare$ \newline}
+
+\begin{document}
+	\preprint{APS/123-QED}
+    \title{Principles of Mathematical Analysis}
+    \author{}
+    \maketitle
+    % \tableofcontents
+    % \newpage
+
+    \section{The Real and Complex Number System}
+    \begin{defi}
+        Let $S$ be a set. An \textbf{order} on $S$ is a relation, denoted by $<$, with the following two properties:
+        \begin{enumerate}
+            \item If $x, y \in S$ then one and only one of the statements
+            \begin{equation}
+                x < y, \ \ \ \ x = y, \ \ \ \ x > y
+            \end{equation}
+            is true.
+            \item if $x,y,z \in S, \ x < y, \ y < z$ then $x < z$.
+        \end{enumerate}
+    \end{defi} 
+
+    \begin{defi}
+        An \textbf{ordered set} is a set $S$ in which an order is defined.
+    \end{defi}
+    \begin{defi}
+        Suppose $E \subset S$. If $\exists \beta \in S \ \forall x \in E \ x \leq \beta$, $E$ is said to be bounded above, and $\beta$ is called an \textbf{upper bound} of $E$.
+    \end{defi}
+    \begin{defi}
+        $\alpha$ is the \textbf{least upper bound} of $E$ ($\alpha = \sup E$) if
+        \begin{enumerate}
+            \item $\alpha$ is an upper bound of $E$.
+            \item if $\gamma < \alpha$ then $\gamma$ is not an upper bound of $E$.
+        \end{enumerate}
+    \end{defi}
+    \begin{defi}
+        An ordered set $S$ is said to have the \textbf{least-upper-bound property} if the following is true:
+        \begin{equation*}
+            \begin{cases}
+                E \subset S, E \neq \emptyset \\
+                E \text{ is bounded above}
+            \end{cases}
+            \implies
+            \sup E \in S
+        \end{equation*}
+    \end{defi}
+
+    \begin{theo}
+        Every ordered set with the least-upper-bound property also has the \textbf{greatest-lower-bound property}.
+    \end{theo}
+    
+    \begin{defi}
+        A \textbf{field} is a set $F$ with two operations, called addition and multiplication, which satisfy the following so-called ``field axioms'' (A), (M) and (D).
+        \begin{description}
+            \item[A1] $\forall x, y \in F, \ x+y \in F$.
+            \item[A2] $\forall x,y \in F, \ x+y=y+x$.
+            \item[A3] $\forall x,y,z \in F, \ (x+y)+z=x+(y+z)$.
+            \item[A4] F contains an element $0$ such that $\forall x\in F, \ 0 + x = x$.
+            \item[A5] To $\forall x \in F$ corresponds an element $-x \in F$ such that $x + (-x) = 0$.
+            \item[M1] $\forall x, y \in F, \ xy \in F$.
+            \item[M2] $\forall x,y \in F, \ xy=yx$.
+            \item[M3] $\forall x,y,z \in F, \ (xy)z=x(yz)$.
+            \item[M4] F contains an element $1 \neq 0$ such that $\forall x\in F, \ 1x = x$.
+            \item[M5] To $\forall x \in F (x \neq 0)$ corresponds an element $1/x \in F$ such that $x (1/x) = 1$.
+            \item[D] $\forall x,y,z \in F, \ x(y+z)=xy+xz$.
+        \end{description}
+    \end{defi}
+    \begin{prop} Properties of fields.
+        \begin{enumerate}
+            \item $x+y=x+z \implies y=z$
+            \item $x+y=x \implies y=0$
+            \item $x+y=0 \implies y=-x$
+            \item $-(-x)=x$
+            \item $x \neq 0, xy=xz \implies y=z$
+            \item $x \neq 0, xy=x \implies y=1$
+            \item $x \neq 0, xy=1 \implies y=1/x$
+            \item $x \neq 0, 1/(1/x) = x$
+            \item $0x = 0$
+            \item $x \neq 0, y \neq 0 \implies xy \neq 0$
+            \item $(-x)y=-(xy)=x(-y)$
+            \item $(-x)(-y)=xy$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{defi}
+        An \textbf{ordered field} is a field $F$ which is also an ordered set, such that
+        \begin{enumerate}
+            \item $\forall x,y,z \in F, y<z \implies x+y < x+z$
+            \item $\forall x,y \in F, x>0, y>0 \implies xy > 0$
+        \end{enumerate}
+    \end{defi}
+
+    \begin{prop} Properties of ordered fields
+        \begin{enumerate}
+            \item $x > 0 \Longleftrightarrow -x < 0$
+            \item $x > 0, y < z \implies xy < xz$
+            \item $x < 0, y < z \implies xy > xz$
+            \item $x \neq 0 \implies x^2 > 0$, in particular $1 > 0$
+            \item $0 < x < y \implies 0 < 1/y < 1/x$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{theo}
+        There exists an ordered field $\R$ which has the least-upper-bound property and contains $\Q$ as a subfield.
+    \end{theo}
+    \begin{framed}
+    \Proof{
+        \begin{description}
+            \item[Step 1] We define the cut as any set $\alpha \subset \Q$ with the following 3 properties:
+            \begin{enumerate}
+                \item $\alpha$ is not empty, and $\alpha \neq \Q$.
+                \item If $p \in \alpha, q \in \Q$, and $q < p$, then $q \in \alpha$.
+                \item If $p \in \alpha$, then $p < r$ for some $r \in \alpha$.
+            \end{enumerate}
+            
+            We assume that $R$ consists of cuts. (Note that the elements themselves are not important. The operations on the elements are what we should focus on. It is OK to associate a number with a cut.)
+            
+            $p,q,r,\cdots$ will denote rational numbers, and $\alpha,\beta,\gamma,\cdots$ will denote cuts.
+
+            Define $r^* = \{ p \in \Q : p < r \}$. It is clear that $r^*$ is a cut.
+            
+            \item[Step 2] Define ``$\alpha < \beta$'' to mean: $\alpha$ is a proper subset of $\beta$. Thus $R$ is now an ordered set.
+            \item[Step 3] The ordered set $R$ has the least-upper-bound property. Let $A$ be a nonempty subset of $R$, and assume that $A$ is above bounded. Define
+            \begin{equation}
+                \gamma = \bigcup A
+            \end{equation}
+            It is not difficult to prove that $\gamma \in R$ and $\gamma = \sup A$.
+
+            \item[Step 4] Axioms of addition. Define $\alpha + \beta = \{ r+s : r \in \alpha, s \in \beta \}$. $0^*$ plays the role of $0$.
+
+            \item[Step 5] Axioms of multiplication. Define $R^+ = \{ \alpha \in R : \alpha > 0^* \}$. If $\alpha, \beta \in R^+$, define $\alpha \beta = \{ p : p \leq rs, r \in \alpha, s \in \beta, r > 0, s > 0 \}$.
+
+            \item[Step 6] The distribution law. 
+        \end{description}
+        
+        We have now completed the proof that $R$ is an ordered field with the least-upper-bound property.
+
+        Define $Q = \{ r^* : r \in \Q \}$. It is easy to find that the ordered field $Q$ is isomorphic to the ordered field $\Q$. This identification allows us to regard $\Q$ as a subfield of $R$.
+    }
+    \end{framed}
+
+    \begin{theo}
+        (Archimedean property) If $x,y \in \R$, and $x > 0$, then there exists a positive integer $n$ such that
+        \begin{equation}
+            nx > y
+        \end{equation}
+    \end{theo}
+    
+    \begin{theo}
+        ($\Q$ is dense in $\R$) If $x, y \in \R$, and $x < y$, then there exists a $p \in \Q$ such that $x < p < y$.
+    \end{theo}
+
+    \begin{defi}
+        A \textbf{complex number} is an ordered pair $(a,b)$ of real numbers.
+    \end{defi}
+    \begin{defi}
+        The \textbf{complex field} is the set of complex numbers with the following definitions of addition and multiplication
+        \begin{align*}
+            &(a,b) + (c,d) = (a+c, b+d) \\
+            &(a,b)(c,d) = (ac-bd, ad+bc)
+        \end{align*}
+    \end{defi}
+
+    \begin{defi} The unit of imaginary part is denoted as
+        \begin{equation}
+            i = (0, 1)
+        \end{equation}
+    \end{defi}
+
+    \section{Basic Topology}
+    \begin{defi}
+        A \textbf{metric space} is a set $X$ with a distance function (metric) 
+        \begin{equation}
+            d : X \times X \to \R
+        \end{equation} 
+        defined on it such that $\forall p,q,r \in X$
+        \begin{enumerate}
+            \item $d(p, q) \geq 0$ with equality iff $p=q$
+            \item $d(p,q) = d(q,p)$
+            \item $d(p,q) \leq d(p,r) + d(r,p)$
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi} Let $X$ be a metric space and $E$ be a subset of $X$.
+        \begin{itemize}
+            \item Neighborhood: The neighborhood of a point $p \in X$ is defined as $N_r(p) = \{ q \in X: d(p,q) < r, r > 0 \}$
+            \item Limit point (\href{https://en.wikipedia.org/wiki/Limit_point}{wikipedia}): A point $p \in X$ is a limit point of the set $E$ if every neighborhood of $p$ contains at least one point $q \neq p$ such that $q \in E$. (An equivalent definition: every neighborhood of $p$ contains infinitely many points of $E$. A third definition: there is a sequence of points in $E \backslash \{p\}$ whose limit is $p$. )
+            \item Isolated point: A point $p \in X$ is a isolated point of the set $E$ if $p \in E$ and $p$ is not a limit point of $E$.
+            \item Interior point: A point $p \in X$ is a interior point of the set $E$ if there exists a neighborhood $N(p)$ such that $N(p) \subset E$.
+            \item Closed: $E$ is closed if every limit point of $E$ is a point of $E$. (Both $\emptyset$ and $X$ are closed.)
+            \item Open: $E$ is open if every point of $E$ is an interior point. (Both $\emptyset$ and $X$ are open.)
+            \item Complement: $E^c = \{ p \in X : p \notin E \}$.
+            \item Perfect: $E$ is perfect if $E$ is closed and every point of $E$ is a limit point of $E$.
+            \item Bounded: $E$ is bounded if it is contained in a neighborhood $N_r(q)$ of a point $q \in X$.
+            \item Dense: $E$ is dense in $X$ if $\forall p \notin E$ is a limit point of $E$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{theo}
+        A set $E$ is \textbf{open} iff its complement is closed.
+    \end{theo}
+    \begin{theo}
+        A set $E$ is \textbf{closed} iff its complement is open.
+    \end{theo}
+
+    \begin{defi}
+        $X$ is a metric space, $E \subset X$, $E'$ denotes the set of all limit points of $E$ in X. The closure of $E$ is defined as
+        \begin{equation}
+            \overline{E} = E \cup E'
+        \end{equation}
+    \end{defi}
+
+    This closure property can be described as a relation $R \subset X^{\infty} \times X$ on $X$, where $R$ is the set of tuples consisting of a convergent sequence $\{p_i\}_{i=1}^{\infty}$ of points on $X$ and its limit point $p$. For a closed set $E$, if $p_1, p_2, \cdots, p_{\infty} \in E$ and $(p_1, p_2, \cdots, p_{\infty}, p) \in R$, then $p \in E$. 
+    
+    Thus $\overline{E}$ is the smallest closed set which contains $E$, and $\overline{E}$ is the intersection of all closed sets which contains $E$.
+
+    \begin{theo}
+        $\{G_i\}$ are open sets, $\{F_i\}$ are closed sets, $n \in \N$.
+        \begin{enumerate}
+            \item $\bigcup_{i} G_i$ is open.
+            \item $\bigcap_{i} F_i$ is closed.
+            \item $\bigcap_{i=1}^n G_i$ is open.
+            \item $\bigcup_{i=1}^n F_i$ is closed.
+        \end{enumerate}
+        Remark : $\bigcap_{i=1}^{\infty} G_i$ may not be open, for instance, $G_i = (-\frac{1}{i}, \frac{1}{i}), \ \bigcap_{i=1}^{\infty} G_i = \{0\}$. Similarily, $\bigcup_{i=1}^\infty F_i$ may not be closed, for instance, $F_i = (-\infty, -\frac{1}{i}]\cup [\frac{1}{i}, \infty), \ \bigcup_{i=1}^{\infty} F_i = (-\infty, 0) \cup (0, +\infty)$.
+    \end{theo}
+
+    \begin{theo}
+        Suppose $E \subset Y \subset X$, $E$ is open relative to $Y$ iff $E = Y \cap G$ for some open subset $G$ of $X$.
+    \end{theo}
+    \begin{framed}
+    \Proof {
+
+        (1) If $E = Y \cap G$ for some open subset $G \subset X$, then $\forall p \in E$, there exists an $r_p > 0$ such that 
+        \begin{equation}
+            \{q \in X : d(p, q) < r_p\} \subset G
+        \end{equation}
+        
+        It follows that
+        \begin{equation}
+            \{q \in Y : d(p, q) < r_p\} = \{q \in X : d(p, q) < r_p\} \cap Y \subset (G \cap Y) = E
+        \end{equation}
+
+        (2) If $E$ is open relative to $Y$, then
+        \begin{equation}
+            \forall p \in E \ \exists r_p > 0 \ \left( \{q \in Y : d(p, q) < r_p\} \subset E \right)
+        \end{equation}
+        
+        Define $V_p = \{ q \in X : d(p, q) < r_p \}$
+        and let $G = \bigcup_{p \in E} V_p$.
+        It is clear that $G$ is an open set and $p \in G$. Thus $E \subset Y \cap G$. And
+        \begin{equation}
+            Y \cap G = \bigcup_{p \in E} \{ q \in Y : d(p, q) < r_p \} \subset E
+        \end{equation}
+        Thus $E = Y \cap G$.
+    }
+    \end{framed}
+
+    \begin{rem}
+        It is interesting that $E$ is open relative to $Y$ without being open relative to $X$. The property of being open thus depends on the space in which $E$ is embedded. 
+    \end{rem}
+
+    \begin{defi}
+        \textbf{Open cover} of a set $E$: $\{G_i\}$ are open sets, $E \subset \bigcup_i G_i$.
+    \end{defi}
+
+    \begin{defi}
+        A subset $K$ of a metric space is \textbf{compact} iff every open cover of $K$ contains a finite subcover.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $K \subset Y \subset X$, then $K$ is compact relative to $X$ iff $K$ is compact relative to $Y$.
+    \end{theo}
+    \begin{framed}
+        \Proof {
+            
+        (1) Let $\{V_i\}$ be a open cover of $K$ relative to $Y$. We know that $V_i = Y \cap G_i$ for some open set relative to $X$. Then we have a finite subcover of $K$, $\{G_i\}_{i=1}^n$, relative to $X$, that is $K \subset \bigcup_{i=1}^n G_i$. Thus, noticing that $K \subset Y$, $K \subset \bigcup_{i=1}^n V_i$.
+        
+        (2) Obviously.
+        }
+
+    \end{framed}
+
+    \begin{theo}
+        Compact subsets of a metric space are closed.
+    \end{theo}
+    \begin{framed}
+        \Proof {
+            Let $X$ be a compact subset of metric space $X$ and let $p \in K^c$, $q \in K$. Suppose $V_q$ and $W_q$ are neighborhoods of $p$ and $q$ of radius less that $\frac{1}{2} d(p, q)$. 
+            
+            $\{W_q\}_{q \in K}$ is an open cover of $K$ $\implies$ there are a finitely many points $q_1, \cdots, q_n$ such that $K \subset W_{q_1} \cup \cdots \cup W_{q_n} = W$. $V = V_{q_1} \cap \cdots \cap V_{q_n}$ is a neighborhood of $p$ and $V \cap W = \emptyset$ $\implies$ $p$ is an interior point $\implies$ $K^c$ is open thus $K$ is closed.
+        }
+    \end{framed}
+
+    \begin{theo}
+        Closed subsets of compact sets are compact.
+    \end{theo}
+    \begin{framed}
+        \Proof {
+            $F \subset K \subset X$. $F$ is closed relative to $X$, $K$ is compact. Let $\{V_i\}$ be a open cover of $F$, then 
+            
+            $\{V_i\} \cup \{F^c\}$ is an open cover of $K$ $\implies$ a finite subset $\Omega$ of $\{V_i\} \cup \{F^c\}$ is an open cover of $K$ and thus $F$. 
+            
+            $\Omega \backslash \{F^c\}$ is still an open cover of $F$ $\implies$ a finite subset of $\{V_i\}$ is an open cover of $K$.
+
+        }
+    \end{framed}
+
+    \section{Numerical Sequences and Series}
+    \subsection{Numerical Sequences}
+    \begin{defi}
+        A sequence $\{p_n\}$ in a metric space $X$ is said to \textbf{converge} (in $X$) if there is a point $p \in X$ such that
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists N \in \Z \ (n \geq N \implies d(p_n, p) < \epsilon)
+        \end{equation}
+    \end{defi}
+    \begin{theo}
+        Let $\{p_n\}$ be a sequence in metric space $X$.
+        \begin{enumerate}
+            \item $p_n \to p$ iff every neighborhood of $p$ contains $p_n$ for all but finitely many $n$.
+            \item $p_n \to p, \ p_n \to p' \implies p = p'$.
+            \item converge $\implies$ bounded
+            \item If $E \subset X$, $p$ is a limit point of $E$ $\Longleftrightarrow$ there is a sequence $\{p_n\} \subset E$ such that $p_n \to p$.
+            \item $\{d(p_n, p)\}$ is a sequence in $\R$. $p_n \to p$ iff $d(p_n, p) \to 0$ with the metric defined as $d(a,b) = | a-b |$.
+        \end{enumerate}
+    \end{theo}
+    \begin{theo}
+        Suppose $\{s_n\}$ and $\{t_n\}$ are complex sequence, and $s_n \to s$, $t_n \to t$. Then
+        \begin{enumerate}
+            \item $s_n + t_n \to s + t$
+            \item $s_nt_n \to st$
+            \item if $s_n \neq 0,\ n=0,1,\cdots$, then $\frac{1}{s_n} \to \frac{1}{s}$
+        \end{enumerate}
+    \end{theo}
+
+    \begin{defi}
+        Let $\{n_i\}$ be a sequence of positive integers such that $n_1 < n_2 < \cdots $. Then $\{p_{n_i}\}$ is a \textbf{subsequence} of $\{ p_n \}$.
+    \end{defi}
+
+    \begin{theo}
+        The subsequential limits of a sequence $\{p_n\}$ in a metric space $X$ forms a closed subset of $X$.
+    \end{theo}
+    \begin{framed}
+        \Proof {
+            Let $E^*$ be the set of the subsequential limits of $\{p_n\}$ and let $q$ be a limit point of $E^*$. We need to show that there is a subsequence of $\{p_n\}$ which converges to $q$.
+
+            \begin{enumerate}
+                \item Choose $p_{n_1} \neq q$, and put $\delta = d(q, p_{n_1})$.
+
+                \item Suppose $p_{n_1}, \cdots, p_{n_i}$ are chosen. Then 
+            \begin{itemize}
+                \item $q$ is a limit point of $E^*$ $\implies$ there exists a point $x \in E^*$ such that $d(x, q) < 2^{-1-i} \delta$.
+                \item $x \in E^*$ $\implies$ there exists $n_{i+1} > n_{i}$ such that $d(p_{n_{i+1}}, x) < 2^{-1-i} \delta$.
+            \end{itemize}
+            
+            Thus $d(q, p_{n_{i+1}}) \leq d(x,q)+d(p_{n_{i+1}}, x) < 2^{-i} \delta$
+
+            \item By induction, we construct a sequence $\{p_{n_{i}} \}$ that converges to $q$. Thus $q \in E^*$.
+            \end{enumerate}
+        }
+    \end{framed}
+
+    \begin{defi}
+        A sequence $\{p_n\}$ in a metric space $X$ is said to be a \textbf{Cauchy sequence} if 
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists N \in \Z \ (m,n \geq N \implies d(p_m, p_n) < \epsilon)
+        \end{equation}
+    \end{defi}
+
+    Obviously, every convergent sequence in a metrix space is Cauchy.
+
+    \begin{defi}
+        Let $E$ be a non-empty subset of a metric space $X$, the \textbf{diameter} of $E$ is defined as
+        \begin{equation}
+            \op{diam} E = \sup \{ d(p,q) : p, q \in E \}
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Let $E$ be a non-empty subset of a metric space $X$, then $\op{diam} \overline{E} = \op{diam} E$. 
+    \end{theo}
+
+    \begin{theo}
+        A sequence $\{p_n\}$ in a metric space $X$ is a Cauchy sequence iff
+        \begin{equation}
+            \lim_{N \to \infty} \op{diam} \{ p_N, p_{N+1}, \cdots \} = 0
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        If $\{K_n\}$ is a sequence of non-empty compact sets in $X$ such that 
+        \begin{equation}
+            \begin{cases}
+                K_n \supset K_{n+1} (n=1,2,\cdots) \\
+                \lim_{n \to \infty} \op{diam} K_n = 0 
+            \end{cases}
+            \implies \text{$\bigcap_1^\infty K_n$ consists of exactly one point.}
+        \end{equation} 
+    \end{theo}
+
+    \begin{defi}
+        A metric space in which every Cauchy sequence converges is said to be \textbf{complete}.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $\{s_n\}$ is monotonic, then $\{s_n\}$ converges iff it is bounded.
+    \end{theo}
+
+    \begin{defi}
+        Let $\{s_n\}$ be a sequence of real numbers. 
+        
+        $s_n \to +\infty$ if
+        \begin{equation}
+            \forall M \in \R \ \exists N \in \Z \ (n \geq N \implies s_n \geq M)
+        \end{equation}
+
+        $s_n \to -\infty$ if
+        \begin{equation}
+            \forall M \in \R \ \exists N \in \Z \ (n \geq N \implies s_n \leq M)
+        \end{equation}
+
+        Let $E = \{ x \in [-\infty, \infty] : s_{n_k} \to x \}$, upper and lower limits of $\{s_n\}$ is defined as
+        \begin{equation}
+            \limsup_{n \to \infty} s_n = \sup E
+        \end{equation}
+        \begin{equation}
+            \liminf_{n \to \infty} s_n = \inf E
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Let $E = \{ x \in [-\infty, \infty] : s_{n_k} \to x \}$. 
+        \begin{enumerate}
+            \item $\limsup_{n \to \infty} s_n \in E$.
+            \item If $x > \limsup_{n \to \infty} s_n$, then $\exists N \in \Z \ \left( n \geq N \implies s_n < x \right)$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        If $s_n \leq t_n$ for $n \geq N$, where $N$ is fixed, then
+        \begin{equation}
+            \liminf_{n \to \infty} s_n \leq \liminf_{n \to \infty} t_n
+        \end{equation}
+        \begin{equation}
+            \limsup_{n \to \infty} s_n \leq \limsup_{n \to \infty} t_n
+        \end{equation}
+    \end{theo}
+
+    \subsection{Series}
+    \begin{defi}
+        With a sequence $\{ a_n \} \subset \C$, we call $\sum a_n$ a \textbf{series}.
+        \begin{equation}
+            \sum a_n = a_1 + a_2 + \cdots
+        \end{equation}
+    \end{defi}
+
+    \begin{rem}
+        If $\{ a_n \}$ start from $a_0$, then $\sum a_n = a_0 + a_1 + a_2 + \cdots$. We often associate a partial sum sequence $\{A_n\}$ to a series $\sum a_n$ where $A_n = \sum_{i=1}^n a_n$. We say $\sum a_n$ converges if the corresponding partial sum sequence $\{A_n\}$ converges.
+    \end{rem}
+
+    \begin{theo} Some theorems about series.
+        \begin{enumerate}
+            \item (Cauchy criterion) $\sum a_n$ converges iff 
+            \begin{equation}
+                \forall \epsilon > 0 \ \exists N \in \Z \ \forall m \geq n \geq N \ \left| \sum_{k=n}^m a_k \right| \leq \epsilon
+            \end{equation}
+            \item $\sum a_n$ converges $\implies$ $a_n \to 0$
+            \item If $\forall n \in \N^*, \ a_n \in \R^+$ then $\sum a_n$ converges iff $\{A_n\}$ is bounded.
+
+            \item If $| a_n | \leq c_n$ for $n \geq N_0$, then $\sum c_n$ converges $\implies$ $\sum a_n$ converges.
+
+            \item If $a_n \geq d_n \geq 0$ for $n \geq N_0$, then $\sum d_n$ diverges $\implies$ $\sum a_n$ diverges.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{defi}
+        The number $e$ is defined to be
+        \begin{equation}
+            e = \sum_{n=0}^{\infty} \frac{1}{n!}
+        \end{equation}
+    \end{defi}
+
+    $s_n = \sum_{i=0}^n \frac{1}{n!} \leq 1 + 1 + \frac{1}{2} + \cdots + \frac{1}{2^{n-1}} < 3 \implies \{s_n\}$ converges. Thus the definition makes sense.
+
+    \begin{theo}
+        Another definition of $e$.
+        \begin{equation}
+            (1+\frac{1}{n})^n \to e
+        \end{equation}
+    \end{theo}
+    \begin{framed}
+        \Proof {
+            Let $s_n = \sum_{k=0}^n \frac{1}{n!}$, $t_n = (1+\frac{1}{n})^n$.
+
+            Using binomial theorem, we get
+            \begin{equation}
+                \begin{cases}
+                    \forall n \in \N^* \ \ t_n \leq s_n \\
+                    \forall m \in \N^* \ \ \liminf_{k \to \infty} t_k \geq s_m
+                \end{cases}
+                \implies e \leq \liminf_{k \to \infty} t_k \leq \limsup_{k \to \infty} t_k \leq e
+                \implies \lim_{k \to \infty} t_k = e
+            \end{equation}
+        }
+    \end{framed}
+
+    \begin{theo}
+        If a series converges absolutely, then it converges. i.e.
+        \begin{equation}
+            \sum |a_n| \text{ converges} \implies \sum a_n \text{ converges}
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        (Root test)
+        \begin{equation}
+            \alpha = \limsup_{n \to \infty} \sqrt[n]{|a_n|}
+        \end{equation}
+        \begin{enumerate}
+            \item $\alpha < 1 \implies \sum a_n$ converges.
+            \item $\alpha > 1 \implies \sum a_n$ diverges.
+        \end{enumerate}
+    \end{theo}
+
+    Consider $\sum \frac{1}{n}$ and $\sum \frac{1}{n^2}$, both have $\alpha=1$ but the first diverges and the second converges.
+
+    \begin{theo} (Ratio test)
+        \begin{enumerate}
+            \item $\limsup_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| < 1 \implies$ $\sum a_n$ converges.
+            \item $\exists N_0 \in \Z \ \forall n \geq N_0 \ \left| \frac{a_{n+1}}{a_n} \right| \geq 1 \implies$ $\sum a_n$ diverges.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo} \label{1}
+        Let $\{c_n\} \subset \R^+$, then
+        \begin{equation}
+            \liminf_{n \to \infty} \left|\frac{c_{n+1}}{c_n}\right| \leq \liminf_{n \to \infty} \sqrt[n]{|c_n|} \leq \limsup_{n \to \infty} \sqrt[n]{|c_n|} \leq \limsup_{n \to \infty} \left|\frac{c_{n+1}}{c_n}\right|
+        \end{equation}
+    \end{theo}
+
+    \begin{rem}
+        Theorem \ref{1} indicates that root test is more powerful than ratio test. However, using ratio test is generally easier than using root test. Besides, root test and ratio test both deal with series converges absolutely.
+    \end{rem}
+
+    \begin{defi}
+        Given $\{c_n\} \in \C$, $z \in \C$, $\sum_{n=0}^{\infty} c_n z^n$ is called a \textbf{power series}.
+
+        \begin{equation}
+            \frac{1}{R} = \limsup_{n \to \infty} \sqrt[n]{|c_n|}
+        \end{equation}
+        \begin{equation}
+            \alpha = \limsup_{n \to \infty} \sqrt[n]{|c_nz^n|} = \frac{|z|}{R}
+        \end{equation}
+
+        We call $R$ the radius of convergence of $\sum c_n z^n$.
+    \end{defi}
+
+    \begin{theo}
+        Multiplication of power series
+        \begin{align*}
+            \sum c_n z^n 
+            &= \left(\sum a_n z^n \right)\left(\sum b_n z^n \right) \\
+            &= a_0b_0 + (a_0b_1 + a_1b_0)z + (a_0b_2 + a_1b_1 + a_2b_0)z^2 + \cdots
+        \end{align*}
+
+        Thus, we define the product of two series as
+        \begin{equation}
+            c_n = \sum_{k=0}^n a_kb_{n-k}
+        \end{equation}
+    \end{theo}
+
+    \begin{theo} Let $\{a_n\} \subset \C$, $A_n = \sum_{i=1}^n a_n$, and $\{b_n\} \subset \R$.
+        \begin{equation}
+            \begin{cases}
+            \{ A_n \} \text{ is bounded} \\
+            b_0 \geq b_1 \geq ... \\
+            b_n \to 0
+            \end{cases} \implies \sum a_n b_n \text{ converges.}
+        \end{equation}
+    \end{theo}
+
+    \begin{cor}
+        (Alternating series) Let $\{a_n\} \subset \R$.
+        \begin{equation}
+            \begin{cases}
+            a_{2m-1} \geq 0, \ a_{2m} \leq 0, \ \ m = 1,2,\cdots \\
+            |a_1| \geq |a_2| \geq ... \\
+            a_n \to 0
+            \end{cases} \implies \sum a_n \text{ converges.}
+        \end{equation}
+    \end{cor}
+
+    \begin{theo}
+        \begin{equation}
+            \begin{cases}
+                \sum a_n \text{ converges absolutely} \\
+                \sum a_n = A \\
+                \sum b_n = B \\
+                c_n = \sum_{k=0}^n a_k b_{n-k}
+            \end{cases}
+            \implies \sum c_n = AB
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        \begin{equation}
+            \begin{cases}
+                \sum a_n = A \\
+                \sum b_n = B \\
+                \sum c_n = C \\
+                c_n = \sum_{k=0}^n a_k b_{n-k}
+            \end{cases}
+            \implies C = AB
+        \end{equation}
+    \end{theo}
+
+    \begin{defi}
+        Let $\{k_n\}$ be a 1-to-1 function from $N^*$ to $N^*$. Then $\sum a_{k_n}$ is called a rearrangement of $a_n$.
+    \end{defi}
+
+    \begin{theo}
+        Let $\sum a_n$ be a series of real numbers which converges non-absolutely. Suppose $-\infty \leq \alpha \leq \beta \leq \infty$. Then there exists a rearrangement $\sum a'_n$ with partial sum $A'_n$ such that
+        \begin{equation}
+            \liminf_{n \to \infty} A'_n = \alpha \ \ \ \ \limsup_{n \to \infty} A'_n = \beta
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        absolutely converge $\implies$ every rearrangement converges to the same sum
+    \end{theo}
+
+    \section{Continuity}
+    
+    \begin{defi}
+        Let $X$ and $Y$ be metric spaces; suppose $E \subset X$, $f: E \to Y$, and $p$ is a limit point of $E$. We write 
+        \begin{equation}
+            f(x) \to q \text{ as } x \to p \text{ or } \lim_{x \to p} f(x) = q
+        \end{equation}
+        if there is a point $q \in Y$ such that
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in E \backslash \{p\} \ \left( d_X(x,p) < \delta \implies d_Y(f(x),q) < \epsilon \right)
+        \end{equation}
+    \end{defi}
+
+    \begin{rem}
+        In the definition, $f$ may not have definition at $p$. Using a subset $E$ of a metric space $X$ loses nothing of interest. This simplifies statements and proofs of some theorems.
+    \end{rem}
+
+    \begin{theo}
+        $f(x) \to q \text{ as } x \to p$ iff
+        \begin{equation}
+            \forall \{p_n\} \subset E \backslash \{p\} \ (p_n \to p \implies f(p_n) \to q)
+        \end{equation}
+    \end{theo}
+
+    \begin{cor}
+        As $x \to p,\ f(x) \to q,\ f(x) \to q' \implies q = q'$.
+    \end{cor}
+
+    \begin{theo}
+        As $x \to p$, $f(x) \to A$ and $g(x) \to B$. Then
+        \begin{enumerate}
+            \item $(f+g)(x) \to A+B$
+            \item $(fg)(x) \to AB$
+            \item $(\frac{f}{g})(x) \to \frac{A}{B} \ \ (B \neq 0)$
+        \end{enumerate}
+    \end{theo}
+    
+    \begin{defi}
+        Let $X$ and $Y$ be metric spaces; suppose $E \subset X$, $f: E \to Y$, and $p \in E$. $f$ is said to be continuous at $p$ if
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in E \ \left( d_X(x,p) < \delta \implies d_Y(f(x),f(p)) < \epsilon \right)
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        $f$ is continuous at $p$ iff
+        \begin{equation}
+            \forall \{p_n\} \subset E \ (p_n \to p \implies f(p_n) \to f(p))
+        \end{equation}
+    \end{theo}
+
+    \begin{rem}
+        If $p$ is an isolated point of $E$, then by definition $f$ is continuous at $p$.
+    \end{rem}
+
+    \begin{theo}
+        If $p$ is a limit point of $E$, then $f$ is continuous at $p$ iff $f(x) \to f(p)$ as $x \to p$.
+    \end{theo}
+
+    \begin{theo}
+        $f: X \to Y$ is continuous on $X$ iff $\forall$ open set $V \subset Y$, $f^{-1}(V) \subset X$ is open.
+    \end{theo}
+    \begin{cor}
+        $f: X \to Y$ is continuous on $X$ iff $\forall$ closed set $C \subset Y$, $f^{-1}(C) \subset X$ is closed.
+    \end{cor}
+
+    \begin{defi}
+        $f: E \to \R^k$ is said to be \textbf{bounded} if
+        \begin{equation}
+            \forall x \in E \ \exists M \in \R \ ( | f(x) | < M )
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Let $X$ be a compact metric space and $Y$ be a metric space; suppose $f: X \to Y$. Then $f(X)$ is compact.
+    \end{theo}
+
+    \begin{theo}
+        $f: E \to \R^k$ is continuous on $E$, and $E$ is compact. Then $f(X)$ is closed and bounded.
+    \end{theo}
+
+    \begin{theo}
+        $f: E \to \R$ is continuous on $E$, and $E$ is compact. Then there exists points $p, q \in E$ such that $f(p) = \sup f(X)$ and $f(q) = \inf f(X)$.
+    \end{theo}
+
+    \begin{defi}
+        \textbf{Uniformly continuous}
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists \delta > 0 \ \forall p,q \in E \ \left(d_X(p,q) < \delta \implies d_Y(f(p),f(q)) < \epsilon \right)
+        \end{equation}
+    \end{defi}
+    \begin{theo}
+        Uniformly continuous
+        \begin{equation}
+            \forall \{p_n\}, \{q_n\} \subset E \ \left(d_X(p_n, q_n) \to 0 \implies d_Y(f(p_n), f(q_n)) \to 0 \right)
+        \end{equation}
+    \end{theo}
+    \begin{framed}
+        \Proof {
+            
+            (1) Suppose $f$ is uniformly continuous, then by definition
+            \begin{equation}
+                \forall \epsilon > 0 \ \exists \delta > 0 \ \forall p,q \in E \ \left(d_X(p,q) < \delta \implies d_Y(f(p),f(q)) < \epsilon \right)
+            \end{equation}
+            Since $d_X(p_n, q_n) \to 0$, by definition
+            \begin{equation}
+                \forall \delta > 0 \ \exists N \in \Z \ \left( n \geq N \implies d_X(p_n, q_n) < \delta \right)
+            \end{equation}
+            Thus
+            \begin{equation}
+                \forall \epsilon > 0 \ \exists N \in \Z \ \left( n \geq N \implies d_Y(f(p_n) - f(q_n)) < \epsilon \right)
+            \end{equation}
+    
+            Hence, $d_Y(f(p_n) - f(q_n)) \to 0$.
+
+            (2) Conversely, suppose $f$ is not uniformly continuous, then
+            \begin{equation}
+                \exists \epsilon > 0 \ \forall \delta > 0 \ \exists p,q\in E \ \left( d_X(p,q) < \delta \ \land \ d_Y(f(p),f(q)) \geq \epsilon \right) 
+            \end{equation}
+            
+            Taking $\delta_n = 1/n$, we thus find a pair of sequences $\{p_n\}$ and $\{q_n\}$ such that
+            \begin{equation}
+                \forall n \in \Z \ (d_X(p_n, q_n) < 1/n) \text{ and } \exists \epsilon > 0 \ \forall n \in \Z \ [d_Y(f(p_n), f(q_n)) \geq \epsilon]
+            \end{equation}
+
+            In other words, $d_X(p_n, q_n) \to 0$ but $d_Y(f(p_n, q_n)) \not\to 0$.
+        }
+    \end{framed}
+
+    \begin{theo}
+        Let $f$ be a continuous mapping of a compact metric space $X$ into a metric space $Y$. Then $f$ is uniformly continuous on $X$.
+    \end{theo}
+
+    \begin{theo}
+        Let $f$ be a continuous mapping of a compact metric space $X$ into a metric space $Y$, and if $E$ is a connected subset of $X$. Then $f(E)$ is connected.
+    \end{theo}
+
+    \begin{theo}
+        Let $f$ be a continuous real function on the interval $[a,b]$.
+        \begin{equation}
+            f(a) < c < f(b) \implies \exists x \in (a,b) \ \left( f(x)=c \right)
+        \end{equation}
+    \end{theo}
+
+    \section{Differentiation of Real Functions}
+    
+    \begin{defi}
+        $f: [a,b] \to \R$. For a fixed $x \in [a,b]$, form the quotient
+        \begin{equation}
+            \phi(t) = \frac{f(t)-f(x)}{t-x} \ \ \ \ (a<t<b, \ t \neq x)
+        \end{equation}
+        and define 
+        \begin{equation}
+            f'(x) = \lim_{t \to x} \phi(t)
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        $f$ is \textbf{differentiable} at $x$ $\implies$ $f$ is continuous at $x$.
+    \end{theo}
+
+    Examples
+    \begin{enumerate}
+        \item $f(x) = 
+            \begin{cases}
+                \sin \frac{1}{x} & x \neq 0 \\
+                0 & x = 0
+            \end{cases}
+        $ is not continuous at $0$.
+        \item $f(x) = 
+            \begin{cases}
+                x\sin \frac{1}{x} & x \neq 0 \\
+                0 & x = 0
+            \end{cases}
+        $ is continuous at $0$ but not differentiable at $0$.
+        \item $f(x) = 
+            \begin{cases}
+                x^2 \sin \frac{1}{x} & x \neq 0 \\
+                0 & x = 0
+            \end{cases}
+        $ is continuous and differentiable at $0$.
+    \end{enumerate}
+    
+
+    \begin{theo}
+        Suppose $f,g$ are differentiable. Then $f+g$, $fg$ and $f/g$ are differentiable.
+        \begin{enumerate}
+            \item $(f+g)' = f'+g'$
+            \item $(fg)' = f'g+fg'$
+            \item $(\frac{f}{g})' = \frac{f'g-fg'}{g^2} \ \ \ \ (g \neq 0)$
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        If $h(x) = g(f(x))$, then $h'(x) = g'(f(x)) \cdot f'(x)$.
+    \end{theo}
+
+    \begin{theo}
+        $f$ has a local maximum at a point $x \in (a, b)$, and if $f'(x)$ exists, then $f'(x) = 0$.
+    \end{theo}
+
+    \begin{theo}
+        (Generalized mean value theorem) If $f$ and $g$ are continuous real functions on $[a,b]$ which are differentiable in $(a,b)$, then there is a point $x \in (a,b)$ at which 
+        \begin{equation}
+            [f(b)-f(a)] g'(x) = [g(b)-g(a)] f'(x)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        (Taylor's theorem) Suppose $f : [a,b] \to \R$, $n \in \N^*$, $f^{(n-1)}$ is continuous on $[a,b]$, and $f^{(n)}$ exists on $(a,b)$. Let $\alpha, \beta \in [a,b]$ be two distinct points and define
+        \begin{equation}
+            P(t) = \sum_{k=0}^{n-1} \frac{f^{(k)}(\alpha)}{k!} (t-\alpha)^k
+        \end{equation}
+
+        Then $\exists x \in (\alpha, \beta)$ such that 
+        \begin{equation}
+            f(\beta) = P(\beta) + \frac{f^{(n)}(x)}{n!} (\beta-\alpha)^n
+        \end{equation}
+    \end{theo}
+
+    \section{The Riemann-Stieltjes Integral}
+    \begin{defi}
+        Let $[a,b]$ be a given interval. A \textbf{partition} $P$ of $[a,b]$ is defined as a finite set of points $\{ x_0, \cdots, x_n \}$ where $a = x_0 \leq \cdots \leq x_n = b$. Suppose $f: [a,b] \to \R$ is bounded. 
+        
+        For a partition $P$, the upper and lower sum of $f$ over $[a,b]$ are defined as
+        \begin{equation}
+            U(P,f) = \sum_{i=1}^n \sup f([x_{i-1}, x_i]) \cdot (x_i - x_{i-1})
+        \end{equation}
+        \begin{equation}
+            L(P,f) = \sum_{i=1}^n \inf f([x_{i-1}, x_i]) \cdot (x_i - x_{i-1})
+        \end{equation}
+        
+    And the upper and lower Riemann integral are defined to be
+    \begin{equation}
+        \overline{\int_a^b} f(x) \d x = \inf_P U(P, f)
+    \end{equation}
+    \begin{equation}
+        \underline{\int_a^b} f(x) \d x = \sup_P L(P, f)
+    \end{equation}
+
+    If $\overline{\int_a^b} f(x) \d x = \underline{\int_a^b} f(x) \d x$, we say that $f$ is \textbf{Riemann-integrable} on $[a,b]$, and write $f \in \mathscr{R}$.
+    \end{defi}
+
+    Consider a more general situation.
+    \begin{defi}
+        Let $\alpha$ be a monotonically increasing function on $[a,b]$.
+        \begin{equation}
+            U(P,f,\alpha) = \sum_{i=1}^n \sup f([x_{i-1}, x_i]) \cdot [\alpha(x_i) - \alpha(x_{i-1})]
+        \end{equation}
+        \begin{equation}
+            L(P,f,\alpha) = \sum_{i=1}^n \inf f([x_{i-1}, x_i]) \cdot [\alpha(x_i) - \alpha(x_{i-1})]
+        \end{equation}
+        \begin{equation}
+            \overline{\int_a^b} f(x) \d \alpha(x) = \inf_P U(P, f, \alpha)
+        \end{equation}
+        \begin{equation}
+            \underline{\int_a^b} f(x) \d \alpha(x) = \sup_P L(P, f, \alpha)
+        \end{equation}
+
+        If $\overline{\int_a^b} f(x) \d \alpha(x) = \underline{\int_a^b} f(x) \d \alpha(x)$, we say that $f$ is \textbf{Stieltjes-integrable} with respect to $\alpha$ on $[a,b]$, and write $f \in \mathscr{R}(\alpha)$.
+    \end{defi}
+
+    \begin{defi}
+        We say partition $P^*$ is a \textbf{refinement} of $P$ if $P^* \supset P$.
+    \end{defi}
+
+    \begin{theo}
+        If $P^*$ is a refinement of $P$, then
+        \begin{equation}
+            L(P,f,\alpha) \leq L(P^*, f, \alpha)
+        \end{equation}
+        \begin{equation}
+            U(P,f,\alpha) \geq U(P^*, f, \alpha)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        \begin{equation}
+            \underline{\int_a^b} f(x) \d \alpha(x) \leq \overline{\int_a^b} f(x) \d \alpha(x)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        $f \in \mathscr{R}(\alpha)$ on $[a,b]$ iff
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists P \ \left( U(P,f,\alpha)-L(P,f,\alpha) < \epsilon \right)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        Suppose $U(P,f,\alpha)-L(P,f,\alpha) < \epsilon$
+        \begin{enumerate}
+            \item $\forall P^* \supset P$
+            \begin{equation}
+                U(P^*,f,\alpha)-L(P^*,f,\alpha) \leq U(P,f,\alpha)-L(P,f,\alpha) < \epsilon
+            \end{equation}
+
+            \item If $s_i, t_i$ are arbitrary points in $[x_{i-1}, x_i]$, then
+            \begin{equation}
+                \sum_{i=1}^n | f(s_i)-f(t_i) | \cdot [\alpha(x_i)-\alpha(x_{i-1})] \leq U(P,f,\alpha)-L(P,f,\alpha) < \epsilon
+            \end{equation}
+
+            \item If $f \in \mathscr{R}(\alpha)$ and $t_i$ is a arbitrary point in $[x_{i-1}, x_i]$
+            \begin{equation}
+                \left| \sum_{i=1}^n f(t_i) \cdot [\alpha(x_i)-\alpha(x_{i-1})] - \int_a^b f \d \alpha \right| < \epsilon
+            \end{equation}
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        Some types of Stieltjes-integrable functions on $[a,b]$.
+        \begin{enumerate}
+            \item $f$ is continuous on $[a,b]$.
+            \item $f$ is monotonic on $[a,b]$ and $\alpha$ is continuous on $[a,b]$.
+            \item $f$ is bounded on $[a,b]$ with finite many points of discontinuity on $[a,b]$, and $\alpha$ is continuous at every point at which $f$ is discontinuous.
+            \item $f(x) = \phi(g(x))$ where $g \in \mathscr{R}(\alpha)$, $m \leq g \leq M$ and $\phi$ is continuous on $[m,M]$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        Let $f \in \mathscr{R}$ on $[a,b]$, put
+        \begin{equation}
+            F(x) = \int_a^x f(t) \d t \ \ \ \ x \in [a,b]
+        \end{equation}
+
+        Then 
+        \begin{enumerate}
+            \item $F$ is continuous.
+            \item $f$ is continuous at $x_0$ $\implies$ $F$ is differentiable at $x_0$ with $F'(x_0)=f(x_0)$.
+        \end{enumerate}
+        
+    \end{theo}
+
+    \begin{theo} (Fundamental theorem of calculus)
+        Let $f \in \mathscr{R}$ on $[a,b]$ and $F' = f$, then
+        \begin{equation}
+            \int_a^b f(x) \d x = F(b)-F(a)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo} (Integration by parts)
+        Suppose $F'=f\in \mathscr{R}$ and $G'=g\in \mathscr{R}$, then
+        \begin{equation}
+            \int_a^b F(x)g(x) \d x = F(b)G(b)-F(a)G(a)-\int_a^b f(x)G(x) \d x
+        \end{equation}
+    \end{theo}
+
+    \section{Sequences and Series of Functions}
+    \begin{defi}
+        Suppose $\{f_n\}$ is a sequence of functions defined on a set $E$. 
+        
+        If $\forall x \in E$, $f_n(x)$ converges, we can define a \textbf{limit function}
+        \begin{equation}
+            f(x) = \lim_{n \to \infty} f_n(x) \ \ \ \ x \in E
+        \end{equation}
+
+        If $\forall x \in E$, $\sum f_n(x)$ converges, we can define a \textbf{sum function}
+        \begin{equation}
+            F(x) = \sum f_n(x) \ \ \ \ x \in E
+        \end{equation}
+    \end{defi}
+
+    The main problem is that if the important properties are preserved when under those limit operations.
+
+    Some examples
+    \begin{enumerate}
+        \item Double sequence
+        \begin{equation}
+            s_{m,n} = \frac{m}{m+n}
+        \end{equation}
+        \begin{equation}
+            \lim_{n \to \infty}\lim_{m \to \infty} s_{m,n} = 1
+        \end{equation}
+        \begin{equation}
+            \lim_{m \to \infty}\lim_{n \to \infty} s_{m,n} = 0
+        \end{equation}
+
+        \item Let
+        \begin{equation}
+            f_n(x) = \frac{x^2}{(1+x^2)^n}
+        \end{equation}
+        \begin{equation}
+            F(x) = \sum f_n(x) = \begin{cases}
+                0 & x = 0 \\
+                1+x^2 & x \neq 0
+            \end{cases}
+        \end{equation}
+        We can see that $\{f_n\}$ are continuous functions, but $F$ is not continuous at $0$.
+    \end{enumerate}
+
+    \begin{defi}
+        \textbf{Uniformly convergence}:
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists N \in \Z \ \forall x \in E \ ( n \geq N \implies  d(f_n(x), f(x)) < \epsilon)
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Suppose $f_n \to f$, then $f_n \to f$ uniformly iff
+        \begin{equation}
+            \sup_{x \in E} d(f_n(x), f(x)) \to 0
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Some properties of uniform convergence
+        \begin{enumerate}
+            \item Suppose $f_n \to f$ uniformly on a set $E$ in a metric space. Let $x$ be a limit point of $E$, then
+            \begin{equation}
+                \lim_{t \to x}\lim_{n \to \infty} f_n(t) = \lim_{n \to \infty}\lim_{t \to x} f_n(t)
+            \end{equation}
+
+            \item $
+            \begin{cases}
+                \{f_n\} \text{ are continuous} \\
+                f_n \to f \text{ uniformly}
+            \end{cases}
+            \implies f \text{ is continuous}
+            $
+        \end{enumerate}
+        
+    \end{theo}
+
+    \section{Some Special Functions}
+    \subsection{Power series}
+    \begin{theo}
+        Suppose the series $\sum_{n=0}^\infty c_n x^n (x \in \R)$ converges for $|x| < R$ and define
+        \begin{equation}
+            f(x) = \sum_{n=0}^\infty c_n x^n \ \ \ \ |x| < R
+        \end{equation}
+        
+        Then
+        \begin{enumerate}
+            \item $\sum_{n=0}^\infty c_n x^n (x \in \R)$ converges uniformly on $[-R+\epsilon, R-\epsilon] \ \ \forall \epsilon > 0$.
+
+            \item $f$ is differentiable.
+            \begin{equation}
+                f'(x) = \sum_{n=0}^{\infty} n c_n x^{n-1}
+            \end{equation}
+        \end{enumerate}
+    \end{theo}
+
+    \begin{cor}
+        \begin{equation}
+            f^{(k)}(x) = \sum_{n=k}^{\infty} n(n-1)\cdots (n-k+1) c_n x^{n-k}
+        \end{equation}
+        In particular, $f^{(k)}(0) = k!c_k$.
+    \end{cor}
+
+    \begin{theo}
+        If $\sum_{n=0}^{\infty} c_n$ converges, put
+        \begin{equation}
+            f(x) = \sum_{n=0}^\infty c_n x^n \ \ \ \ -1 < x < 1
+        \end{equation}
+        Then
+        \begin{equation}
+            \lim_{x \to 1} f(x) = \sum_{n=0}^{\infty} c_n
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        Extenstion of Taylor's theorem
+        \begin{equation}
+            f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!} (x-a)^n \ \ \ \ |x-a| < R - a
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        Suppose
+        \begin{equation}
+            \sum_{n=0}^\infty a_n x^n = \sum_{n=0}^\infty b_n x^n \ \ \ \ x \in E
+        \end{equation}
+
+        If $E$ has a limit point, then $a_n = b_n \ \forall n \in \N$.
+    \end{theo}
+
+    \subsection{Elementary Functions}
+    \begin{defi}
+        Define 
+        \begin{equation}
+            E(z) = \sum_{n=0}^{\infty} \frac{z^n}{n!} \ \ \ \ z \in \C
+        \end{equation}
+    \end{defi}
+    \begin{theo}
+        Some properties of $E(z)$.
+        \begin{enumerate}
+            \item $E(z+w) = E(z)E(w)$
+            \item $E'(z) = E(z)$
+        \end{enumerate}
+    \end{theo}
+
+    Suppose we have defined function $x^n (n \in \N^*, x \in \R)$ and $\sqrt[n]{x} (n \in \N^*, x \in \R^+)$. Next we define the exponential function $e^x (x \in \R)$ naturally with the function $E(x)$.
+    \begin{itemize}
+        \item Since $E(0) = 1$, define $e^0 = 1$.
+        \item Let $n,m \in \N^*$
+        \begin{equation}
+            \left[E \left(\frac{n}{m}\right) \right]^m = E(n) = e^n
+        \end{equation}
+        Thus define
+        \begin{equation}
+            e^{\frac{n}{m}} = \sqrt[m]{e^n}
+        \end{equation}
+        \item Let $p \in \Q$
+        \begin{equation}
+            E(-p) = \frac{1}{E(p)} = \frac{1}{e^p}
+        \end{equation}
+        Thus define
+        \begin{equation}
+            e^{-p} = \frac{1}{e^p}
+        \end{equation}
+        \item Let $x \in \R \backslash \Q$
+        \begin{equation}
+            E(x) = \sup \{E(p) : p < x, p \in \Q \} = \sup \{e^p : p < x, p \in \Q \}
+        \end{equation}
+        Thus define
+        \begin{equation}
+            e^x = \sup \{e^p : p < x, p \in \Q \}
+        \end{equation}
+    \end{itemize}
+
+    Since $E \in \mathscr{C}'(\R)$ and $\forall x \in \R \ E(x) \neq 0$, $E$ has an inverse function $L \in \mathscr{C}'(\R^+): \R^+ \to \R$. We use $\ln(x)$ to denote this function.
+
+    \begin{defi}
+        Exponential function with arbitrary base
+        \begin{equation}
+            a^x = e^{x \ln a} \ \ \ \ a \in \R^+, x \in \R
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        (Trigonometric Functions) 
+        \begin{equation}
+            \cos(x) = \frac{1}{2}[E(ix)+E(-ix)]
+        \end{equation}
+        \begin{equation}
+            \sin(x) = \frac{1}{2i}[E(ix)-E(-ix)]
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Derivatives elementary functions
+        \begin{enumerate}
+            \item Let $a \in \R^+, x \in \R$
+            \begin{equation}
+                \left( a^x \right)' = \left[ e^{x \ln a} \right]' = a^x \ln a
+            \end{equation}
+
+            \item Let $x \in \R^+, \alpha \in \R$,
+            \begin{equation}
+                \left(x^{\alpha}\right)' = \left[ e^{\alpha \ln x} \right]' = \alpha x^{\alpha-1} 
+            \end{equation}
+
+            \item Let $x \in \R$
+            \begin{equation}
+                \sin'(x) = \cos(x) \ \ \ \ \cos'(x) = -\sin(x)
+            \end{equation}
+        \end{enumerate} 
+    \end{theo}
+
+    \subsection{Fourier Series}
+    \begin{defi}
+        Let $\{ \phi_n \}$ be a sequence of complex functions on $[a,b]$. $\{ \phi_n \}$ is said to be \textbf{orthonormal} if 
+        \begin{equation}
+            \int_a^b \phi_n(x) \overline{\phi_m(x)} \d x = \begin{cases}
+                0 & m \neq n \\
+                1 & m = n
+            \end{cases}
+        \end{equation}
+
+        If $\{ \phi_n \}$ is orthonormal on $[a,b]$, and
+        \begin{equation}
+            c_n = \int_a^b f(t) \overline{\phi_n(t)} \d t
+        \end{equation}
+        We call the following series the Fourier series of $f$ relative to $\{ \phi_n \}$
+        \begin{equation}
+            f(x) \sim \sum c_n \phi_n (x)
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Let $\{ \phi_n \}$ is orthonormal on $[a,b]$. $f(x) \sim \sum c_n \phi_n (x)$.
+        \begin{equation}
+            s_n(x) = \sum_{m=1}^n c_m \phi_m (x)
+        \end{equation}
+        \begin{equation}
+            t_n(x) = \sum_{m=1}^n \gamma_m \phi_m (x)
+        \end{equation}
+        Then
+        \begin{equation}
+            \int_a^b | f-s_n |^2 \d x \leq \int_a^b | f-t_n |^2 \d x
+        \end{equation}
+        with equality iff $\gamma_m = c_m \ (m=1,\cdots,n)$.
+    \end{theo}
+
+    \begin{theo}
+        (Bessel inequality) Let $\{ \phi_n \}$ is orthonormal on $[a,b]$. $f(x) \sim \sum c_n \phi_n (x)$.
+        \begin{equation}
+            \sum |c_n|^2 \leq \int_a^b |f(x)|^2 \d x
+        \end{equation}
+    \end{theo}
+
+    \section{Functions on Several Variables}
+    \begin{defi}
+        A \textbf{vector space} over a field $F$ is a set $V$ together with two operations that satisfy the eight axioms listed below. The first operation, called addition, is $+ : V \times V \to V$; the second operation, called scalar multiplication, is $\cdot : F \times V \to V$.
+        \begin{enumerate}
+            \item $\forall \st{u,v,w} \in V, \ \st{(u+v)+w = u+(v+w)}$.
+            \item $\forall \st{u,v} \in V, \ \st{u+v = v+u}$.
+            \item $V$ contains an element $\st{0}$ such that $\forall \st{u} \in V, \ \st{0 + u = u}$.
+            \item To $\forall \st{u} \in V$ corresponds an element $\st{-u} \in V$ such that $\st{u+(-u) = 0}$.
+            \item $\forall \st{u} \in V, \ 1\st{u = u}$.
+            \item $\forall \st{u} \in V, \ a,b \in F, \ a(b\st{u}) = (ab)\st{u}$.
+            \item $\forall \st{u} \in V, \ a,b \in F, \ (a+b)\st{u} = a\st{u} + b\st{u}$.
+            \item $\forall \st{u,v} \in V, \ a \in F, \ a\st{(u+v)} = a\st{u} + a\st{v}$.
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}
+        Let $X$ and $Y$ be vector spaces. A mapping $\st{A}: X \to Y$ is said to be a \textbf{linear transformation} if $\forall \st{x}_1,\st{x}_2\in X, c_1,c_2\in F$
+        \begin{equation}
+            \st{A}(c_1\st{x}_1+c_2\st{x}_2) = c_1\st{A}(\st{x}_1) + c_2\st{A}(\st{x}_2)
+        \end{equation}
+    \end{defi}
+
+        Suppose $\{ \st{x}_1,\cdots, \st{x}_p \}$ and $\{ \st{y}_1,\cdots, \st{y}_n \}$ are bases of vector spaces $X$ and $Y$. Then every $\st{A} \in L(X,Y)$ determines an $n \times p$ matrix $A = [a_{jk}]_{n \times p}$ such that
+        \begin{equation}
+            \st{A}(\st{x}_k) = \sum_{j=1}^n a_{jk}\st{y}_j
+        \end{equation}
+
+        Let $\st{x} = \sum_{k=1}^p \alpha_k \st{x}_k$, $\st{y} = \st{A(x)} = \sum_{j=1}^n \beta_j \st{y}_j$, then
+        \begin{equation}
+            \st{A(x)} = \sum_{k=1}^p \alpha_k \sum_{j=1}^n a_{jk}\st{y}_j
+        \end{equation}
+        
+        \begin{equation}
+            \st{A} \left(
+                \begin{bmatrix}
+                    \st{x}_1 & \cdots & \st{x}_p
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \alpha_1 \\ \vdots \\ \alpha_p
+                \end{bmatrix}
+            \right) = 
+            \begin{bmatrix}
+                \st{y}_1 & \cdots & \st{y}_n
+            \end{bmatrix}
+            A
+            \begin{bmatrix}
+                \alpha_1 \\ \vdots \\ \alpha_p
+            \end{bmatrix}
+        \end{equation}
+
+        \begin{equation}
+            \begin{bmatrix}
+                \beta_1 \\ \vdots \\ \beta_n
+            \end{bmatrix}
+            = A
+            \begin{bmatrix}
+                \alpha_1 \\ \vdots \\ \alpha_p
+            \end{bmatrix}
+        \end{equation}
+
+        Therefore, once the bases are determined, we can study the properties of linear space with matrices and coodinates.
+
+        Let $\st{B} \in L(Y,Z)$ and $\{ \st{z}_1,\cdots, \st{z}_m \}$ be a basis of $Z$, and the matric corresponds to $\st{B}$ is denoted as $B = [b_{ij}]_{m \times n}$. Then
+        \begin{equation}
+            \st{B}(\st{y}_j) = \sum_{i=1}^m b_{ij}\st{z}_i
+        \end{equation}
+
+        Consider the composite map $\st{C = BA}$
+        \begin{equation}
+            \st{C}(\st{x}_k) = \st{B}(\st{A}(\st{x}_k)) = \st{B}(\sum_{j=1}^n a_{jk}\st{y}_j) = \sum_{i=1}^m \left(\sum_{j=1}^n b_{ij}a_{jk} \right) \st{z}_i
+        \end{equation}
+
+        Thus the matrix $C = [c_{ik}]_{m \times p}$ corresponds to the map $\st{C}$ satisfies
+        \begin{equation}
+            c_{ik} = \sum_{j=1}^n b_{ij}a_{jk}
+        \end{equation}
+
+    \begin{defi}
+        The product of $A = [a_{ij}]_{p \times m}$ and $B = [b_{ij}]_{m \times n}$ is defined to be a matrix $C = [c_{ij}]_{p \times n}$
+        \begin{equation}
+            c_{ij} = \sum_{k=1}^m a_{ik}b_{kj}
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Suppose $E \subset \R^n$ is open, $f: E \to \R^m$, and $x \in E$. If there exists $A : \R^n \to \R^m$ such that
+        \begin{equation}
+            \lim_{h \to 0} \frac{|f(x+h)-f(x)-Ah|}{|h|} = 0
+        \end{equation}
+        then we say that $f$ is \textbf{differentiable} at $x$.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $E_1 \subset \R^n$ is a open set, $f : E_1 \to \R^m$, and $f$ is differentiable at $x_0 \in E_1$. Suppose $f(E_1) \subset E_2 \subset \R^m$, $E_2$ is an open set, $g : E_2 \to \R^k$, and $f$ is differentiable at $f(x_0) \in E_2$. Then $h(x) = f(g(x))$ is differentiable at $x_0$, and
+        \begin{equation}
+            h'(x_0) = g'(f(x_0)) f'(x_0)
+        \end{equation}
+    \end{theo}
+
+    \begin{defi}
+        Suppose $E \subset \R^n$ is an open set, $f: E \to \R^m$. Let $\{e_1, \cdots, e_n\}$ and $\{u_1, \cdots, u_m\}$ be the standard bases of $\R^n$ and $\R^m$. Decompose $f$ in standard basis of $\R^m$:
+        \begin{equation}
+            f(x) = \begin{bmatrix}
+                f_1(x) \\ \vdots \\ f_m(x)
+            \end{bmatrix}
+        \end{equation}
+
+        We define
+        \begin{equation}
+            \frac{\partial f_i}{\partial x_j} = \lim_{t \to 0} \frac{f_i(x + te_j)-f_i(x)}{t}
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Let $u$ be a unit vector in $\R^n$, define \textbf{directional derivative}:
+        \begin{equation}
+            \frac{\partial f_i}{\partial u} = \lim_{t \to 0} \frac{f_i(x + tu)-f_i(x)}{t}
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Suppose $f$ is differentiable at $x \in E$, then the partial derivatives exists, and
+        \begin{equation}
+            f' = \begin{bmatrix}
+                \frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n} \\
+                \vdots & \ddots & \vdots \\
+                \frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n} \\
+            \end{bmatrix}
+        \end{equation}
+    \end{theo}
+
+    \begin{rem}
+        The existence of partial derivatives do not imply differentiability. For example,
+        \begin{equation}
+            f(x_1,x_2)
+            = \begin{cases}
+                \frac{x_1x_2}{x_1^2+x_2^2} & x_1^2 + x_2^2 \neq 0 \\ 
+                0 & x_1^2 + x_2^2 = 0
+            \end{cases}
+        \end{equation}
+
+        \begin{equation}
+            \frac{\partial f}{\partial x_1}
+            (0,0) = \frac{\partial f}{\partial x_2}
+            (0,0) = 0
+        \end{equation}
+        However, $f$ is not differentiable at $(0,0)$.
+    \end{rem}
+
+    \begin{defi}
+        Suppose $E \subset \R^n$ is an open set, $f: E \to \R^m$. \textbf{Gradient} of $f$ is defined as
+        \begin{equation}
+            (\triangledown f)(x) =
+            \begin{bmatrix}
+                \frac{\partial f(x)}{\partial x_1} & \cdots & \frac{\partial f(x)}{\partial x_n}
+            \end{bmatrix}
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Suppose $E \subset \R^n$ is an open set, $f: E \to \R^m$is differentiable. If $f': E \to L(\R^n, \R^m)$ is continuous, then $f$ is said to be \textbf{continuously differentiable}, and write $f \in \mathscr{C}'(E)$.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $E \subset \R^n$ is an open set, $f: E \to \R^m$. $f \in \mathscr{C}'(E)$ iff its partial derivatives $\frac{\partial f_i}{x_j}$ are continuous.
+    \end{theo}
+
+    \begin{theo}
+        (The inverse function theorem) Suppose $E \subset \R^n$ is an open set, $f: E \to \R^n$, and $f \in \mathscr{C}'(E)$. For some $a \in E$, $f'(a) $ is invertible. Then
+        \begin{enumerate}
+            \item $\exists \text{open sets }U,V \subset \R^n$ such that $a \in U$, $f(a) \in V$, and $f$ is 1-to-1 from $U$ to $V$. 
+
+            \item $f^{-1} \in \mathscr{C}'(V)$.
+        \end{enumerate} 
+    \end{theo}
+
+    \begin{theo}
+        (The implicit function theorem)
+        If $x = (x_1,\cdots,x_n) \in \R^n$ and $y = (y_1,\cdots,y_m) \in \R^m$, we write $(x,y)$ for $(x_1,\cdots,x_n,y_1,\cdots,y_m)$. For $A \in L(\R^{n+m}, \R^n)$, split it into $A_x \in L(\R^n, \R^n)$ and $A_y \in L(\R^m, \R^n)$
+        \begin{equation}
+            A(h,k) = A_x h + A_y k \ \ \ \ \forall h \in \R^n, k \in \R^m
+        \end{equation}
+
+        If the following conditions are satisfied
+        \begin{equation*}
+            \begin{cases}
+                \text{$E \in \R^{n+m}$ is an open set} \\
+                (a,b) \in E \\
+                f \in \mathscr{C}'(E) : E \to \R^n \\
+                f(a,b) = 0 \\
+                A = f'(a,b) \text{ is invertible}
+            \end{cases}
+        \end{equation*}
+
+        Then there exists open sets $U \subset \R^{n+m}, W \subset \R^{m}$ and a mapping $g \in \mathscr{C}'(W) : W \to \R^n$ such that
+        \begin{equation*}
+            \begin{cases}
+                (a,b) \in U \\
+                b \in W \\
+                f(g(y),y) = 0, \ \forall y \in W \\
+                g'(b) = -(A_x)^{-1} A_y
+            \end{cases}
+        \end{equation*} 
+    \end{theo}
+
+    \begin{defi}
+        Suppose $E \subset \R^n$ is an open set, $f: E \to \R^n$ is differentiable at point $x \in E$. The \textbf{Jacobian} of $f$ at $x$ is defined as
+        \begin{equation}
+            J_f(x) = \det f'(x)
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        \textbf{Second-order partial derivatives}. We write
+        \begin{equation}
+            D_{ij}f = D_iD_jf = \frac{\partial}{\partial x_i} 
+            \left(
+                \frac{\partial f}{\partial x_j}
+            \right)
+            = \frac{\partial^2 f}{\partial x_j \partial x_i}
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        $E \subset \R^2$ is an open set and $f: E \to \R$.
+        \begin{equation}
+            \begin{cases}
+                D_1 f, D_2 f, D_{21}f \text{ exists } \forall x \in E \\
+                D_{21} \text{ is continuous at } (a,b) \in E
+            \end{cases}
+            \implies (D_{12}f)(a,b) = (D_{21}f)(a,b)
+        \end{equation}
+    \end{theo}
+
+    
+
+\end{document}
