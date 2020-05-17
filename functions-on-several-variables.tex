@@ -1,0 +1,239 @@
+\section{Functions on Several Variables}
+    \begin{defi}
+        A \textbf{vector space} over a field $F$ is a set $V$ together with two operations that satisfy the eight axioms listed below. The first operation, called addition, is $+ : V \times V \to V$; the second operation, called scalar multiplication, is $\cdot : F \times V \to V$.
+        \begin{enumerate}
+            \item $\forall \bs{u,v,w} \in V, \ \bs{(u+v)+w = u+(v+w)}$.
+            \item $\forall \bs{u,v} \in V, \ \bs{u+v = v+u}$.
+            \item $V$ contains an element $\bs{0}$ such that $\forall \bs{u} \in V, \ \bs{0 + u = u}$.
+            \item To $\forall \bs{u} \in V$ corresponds an element $\bs{-u} \in V$ such that $\bs{u+(-u) = 0}$.
+            \item $\forall \bs{u} \in V, \ 1\bs{u = u}$.
+            \item $\forall \bs{u} \in V, \ a,b \in F, \ a(b\bs{u}) = (ab)\bs{u}$.
+            \item $\forall \bs{u} \in V, \ a,b \in F, \ (a+b)\bs{u} = a\bs{u} + b\bs{u}$.
+            \item $\forall \bs{u,v} \in V, \ a \in F, \ a\bs{(u+v)} = a\bs{u} + a\bs{v}$.
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}
+        Let $X$ and $Y$ be vector spaces. A mapping $\map A: X \to Y$ is said to be a \textbf{linear transformation} if $\forall \bs{x}_1,\bs{x}_2\in X, c_1,c_2\in F$
+        \begin{equation}
+            \map A(c_1\bs{x}_1+c_2\bs{x}_2) = c_1\map A(\bs{x}_1) + c_2\map A(\bs{x}_2)
+        \end{equation}
+    \end{defi}
+
+        Suppose $\{ \bs{x}_1,\cdots, \bs{x}_p \}$ and $\{ \bs{y}_1,\cdots, \bs{y}_n \}$ are bases of vector spaces $X$ and $Y$. Then every $\map A \in L(X,Y)$ determines an $n \times p$ matrix $A = [a_{jk}]_{n \times p}$ such that
+        \begin{equation}
+            \map A(\bs{x}_k) = \sum_{j=1}^n a_{jk}\bs{y}_j \quad k = 1, \cdots, p
+        \end{equation}
+        or equivalently
+        \begin{equation}
+            \begin{bmatrix}
+                \map A(\bs{x}_1) & \cdots & \map A(\bs{x}_p)
+            \end{bmatrix}
+            = [\bs{y}_1 \cdots \bs{y}_n] A
+        \end{equation}
+
+        Let $\bs{x} = \sum_{k=1}^p \alpha_k \bs{x}_k$, $\bs{y} = \bs{A(x)} = \sum_{j=1}^n \beta_j \bs{y}_j$, then
+        \begin{equation}
+            \map A(x) = \sum_{k=1}^p \alpha_k \sum_{j=1}^n a_{jk}\bs{y}_j
+        \end{equation}
+        
+        \begin{equation}
+            \begin{bmatrix}
+                \map A(\bs{x}_1) & \cdots & \map A(\bs{x}_p)
+            \end{bmatrix}
+            \begin{bmatrix}
+                \alpha_1 \\ \vdots \\ \alpha_p
+            \end{bmatrix}
+            = 
+            \begin{bmatrix}
+                \bs{y}_1 & \cdots & \bs{y}_n
+            \end{bmatrix}
+            A
+            \begin{bmatrix}
+                \alpha_1 \\ \vdots \\ \alpha_p
+            \end{bmatrix}
+        \end{equation}
+
+        \begin{equation}
+            \begin{bmatrix}
+                \beta_1 \\ \vdots \\ \beta_n
+            \end{bmatrix}
+            = A
+            \begin{bmatrix}
+                \alpha_1 \\ \vdots \\ \alpha_p
+            \end{bmatrix}
+        \end{equation}
+
+        Therefore, once the bases are determined, we can study the properties of linear space with matrices and coodinates.
+
+        Let $\map B \in L(Y,Z)$ and $\{ \bs{z}_1,\cdots, \bs{z}_m \}$ be a basis of $Z$, and the matric corresponds to $\map B$ is denoted as $B = [b_{ij}]_{m \times n}$. Then
+        \begin{equation}
+            \map B(\bs{y}_j) = \sum_{i=1}^m b_{ij}\bs{z}_i
+        \end{equation}
+
+        Consider the composite map $\map C = \map B \circ \map A$
+        \begin{equation}
+            \map C(\bs{x}_k) = \map B(\map A(\bs{x}_k)) = \map B(\sum_{j=1}^n a_{jk}\bs{y}_j) = \sum_{i=1}^m \left(\sum_{j=1}^n b_{ij}a_{jk} \right) \bs{z}_i
+        \end{equation}
+
+        Thus the matrix $C = [c_{ik}]_{m \times p}$ corresponds to the map $\map C$ satisfies
+        \begin{equation}
+            c_{ik} = \sum_{j=1}^n b_{ij}a_{jk}
+        \end{equation}
+
+    \begin{defi}
+        The product of $A = [a_{ij}]_{p \times m}$ and $B = [b_{ij}]_{m \times n}$ is defined to be a matrix $C = [c_{ij}]_{p \times n}$
+        \begin{equation}
+            c_{ij} = \sum_{k=1}^m a_{ik}b_{kj}
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Suppose $E \subseteq \R^n$ is open, $f: E \to \R^m$, and $x \in E$. If there exists $A : \R^n \to \R^m$ such that
+        \begin{equation}
+            \lim_{h \to 0} \frac{\Vert f(x+h)-f(x)-Ah \Vert}{\Vert h \Vert} = 0
+        \end{equation}
+        then we say that $f$ is \textbf{differentiable} at $x$.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $E_1 \subseteq \R^n$ is a open set, $f : E_1 \to \R^m$, and $f$ is differentiable at $x_0 \in E_1$. Suppose $f(E_1) \subseteq E_2 \subseteq \R^m$, $E_2$ is an open set, $g : E_2 \to \R^k$, and $f$ is differentiable at $f(x_0) \in E_2$. Then $h(x) = f(g(x))$ is differentiable at $x_0$, and
+        \begin{equation}
+            h'(x_0) = g'(f(x_0)) f'(x_0)
+        \end{equation}
+    \end{theo}
+
+    \begin{defi}
+        Suppose $E \subseteq \R^n$ is an open set, $f: E \to \R^m$. Let $\{e_1, \cdots, e_n\}$ and $\{u_1, \cdots, u_m\}$ be the standard bases of $\R^n$ and $\R^m$. Decompose $f$ in standard basis of $\R^m$:
+        \begin{equation}
+            f(x) = \begin{bmatrix}
+                f_1(x) \\ \vdots \\ f_m(x)
+            \end{bmatrix}
+        \end{equation}
+
+        We define
+        \begin{equation}
+            \frac{\partial f_i}{\partial x_j} = \lim_{t \to 0} \frac{f_i(x + te_j)-f_i(x)}{t}
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Let $u$ be a unit vector in $\R^n$, define \textbf{directional derivative}:
+        \begin{equation}
+            \frac{\partial f_i}{\partial u} = \lim_{t \to 0} \frac{f_i(x + tu)-f_i(x)}{t}
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Suppose $f$ is differentiable at $x \in E$, then the partial derivatives exists, and
+        \begin{equation}
+            f' = \begin{bmatrix}
+                \frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n} \\
+                \vdots & \ddots & \vdots \\
+                \frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n} \\
+            \end{bmatrix}
+        \end{equation}
+    \end{theo}
+
+    \begin{rem}
+        The existence of partial derivatives do not imply differentiability. For example,
+        \begin{equation}
+            f(x_1,x_2)
+            = \begin{cases}
+                \frac{x_1x_2}{x_1^2+x_2^2} & x_1^2 + x_2^2 \neq 0 \\ 
+                0 & x_1^2 + x_2^2 = 0
+            \end{cases}
+        \end{equation}
+
+        \begin{equation}
+            \frac{\partial f}{\partial x_1}
+            (0,0) = \frac{\partial f}{\partial x_2}
+            (0,0) = 0
+        \end{equation}
+        However, $f$ is not differentiable at $(0,0)$.
+    \end{rem}
+
+    \begin{defi}
+        Suppose $E \subseteq \R^n$ is an open set, $f: E \to \R^m$. \textbf{Gradient} of $f$ is defined as
+        \begin{equation}
+            (\triangledown f)(x) =
+            \begin{bmatrix}
+                \frac{\partial f(x)}{\partial x_1} & \cdots & \frac{\partial f(x)}{\partial x_n}
+            \end{bmatrix}
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Suppose $E \subseteq \R^n$ is an open set, $f: E \to \R^m$is differentiable. If $f': E \to L(\R^n, \R^m)$ is continuous, then $f$ is said to be \textbf{continuously differentiable}, and write $f \in \mathscr{C}'(E)$.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $E \subseteq \R^n$ is an open set, $f: E \to \R^m$. $f \in \mathscr{C}'(E)$ iff its partial derivatives $\frac{\partial f_i}{x_j}$ are continuous.
+    \end{theo}
+
+    \begin{theo}
+        (The inverse function theorem) Suppose $E \subseteq \R^n$ is an open set, $f: E \to \R^n$, and $f \in \mathscr{C}'(E)$. For some $a \in E$, $f'(a) $ is invertible. Then
+        \begin{enumerate}
+            \item $\exists \text{open sets }U,V \subseteq \R^n$ such that $a \in U$, $f(a) \in V$, and $f$ is 1-to-1 from $U$ to $V$. 
+
+            \item $f^{-1} \in \mathscr{C}'(V)$.
+        \end{enumerate} 
+    \end{theo}
+
+    \begin{theo}
+        (The implicit function theorem)
+        If $x = (x_1,\cdots,x_n) \in \R^n$ and $y = (y_1,\cdots,y_m) \in \R^m$, we write $(x,y)$ for $(x_1,\cdots,x_n,y_1,\cdots,y_m)$. For $A \in L(\R^{n+m}, \R^n)$, split it into $A_x \in L(\R^n, \R^n)$ and $A_y \in L(\R^m, \R^n)$
+        \begin{equation}
+            A(h,k) = A_x h + A_y k \ \ \ \ \forall h \in \R^n, k \in \R^m
+        \end{equation}
+
+        If the following conditions are satisfied
+        \begin{equation*}
+            \begin{cases}
+                \text{$E \in \R^{n+m}$ is an open set} \\
+                (a,b) \in E \\
+                f \in \mathscr{C}'(E) : E \to \R^n \\
+                f(a,b) = 0 \\
+                A = f'(a,b) \text{ is invertible}
+            \end{cases}
+        \end{equation*}
+
+        Then there exists open sets $U \subseteq \R^{n+m}, W \subseteq \R^{m}$ and a mapping $g \in \mathscr{C}'(W) : W \to \R^n$ such that
+        \begin{equation*}
+            \begin{cases}
+                (a,b) \in U \\
+                b \in W \\
+                f(g(y),y) = 0, \ \forall y \in W \\
+                g'(b) = -(A_x)^{-1} A_y
+            \end{cases}
+        \end{equation*} 
+    \end{theo}
+
+    \begin{defi}
+        Suppose $E \subseteq \R^n$ is an open set, $f: E \to \R^n$ is differentiable at point $x \in E$. The \textbf{Jacobian} of $f$ at $x$ is defined as
+        \begin{equation}
+            J_f(x) = \det f'(x)
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        \textbf{Second-order partial derivatives}. We write
+        \begin{equation}
+            D_{ij}f = D_iD_jf = \frac{\partial}{\partial x_i} 
+            \left(
+                \frac{\partial f}{\partial x_j}
+            \right)
+            = \frac{\partial^2 f}{\partial x_j \partial x_i}
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        $E \subseteq \R^2$ is an open set and $f: E \to \R$.
+        \begin{equation}
+            \begin{cases}
+                D_1 f, D_2 f, D_{21}f \text{ exists } \forall x \in E \\
+                D_{21} \text{ is continuous at } (a,b) \in E
+            \end{cases}
+            \implies (D_{12}f)(a,b) = (D_{21}f)(a,b)
+        \end{equation}
+    \end{theo}

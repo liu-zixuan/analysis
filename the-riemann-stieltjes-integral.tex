@@ -1,0 +1,126 @@
+\section{The Riemann-Stieltjes Integral}
+    \begin{defi}
+        Let $[a,b]$ be a given interval. A \textbf{partition} $P$ of $[a,b]$ is defined as a finite set of points $\{ x_0, \cdots, x_n \}$ where $a = x_0 \leq \cdots \leq x_n = b$. Suppose $f: [a,b] \to \R$ is bounded. 
+        
+        For a partition $P$, the upper and lower sum of $f$ over $[a,b]$ are defined as
+        \begin{equation}
+            U(P,f) = \sum_{i=1}^n \sup f([x_{i-1}, x_i]) \cdot (x_i - x_{i-1})
+        \end{equation}
+        \begin{equation}
+            L(P,f) = \sum_{i=1}^n \inf f([x_{i-1}, x_i]) \cdot (x_i - x_{i-1})
+        \end{equation}
+        
+    And the upper and lower Riemann integral are defined to be
+    \begin{equation}
+        \overline{\int_a^b} f(x) \dif x = \inf_P U(P, f)
+    \end{equation}
+    \begin{equation}
+        \underline{\int_a^b} f(x) \dif x = \sup_P L(P, f)
+    \end{equation}
+
+    If $\overline{\int_a^b} f(x) \dif x = \underline{\int_a^b} f(x) \dif x$, we say that $f$ is \textbf{Riemann-integrable} on $[a,b]$, and write $f \in \mathscr{R}$.
+    \end{defi}
+
+    Consider a more general situation.
+    \begin{defi}
+        Let $\alpha$ be a monotonically increasing function on $[a,b]$.
+        \begin{equation}
+            U(P,f,\alpha) = \sum_{i=1}^n \sup f([x_{i-1}, x_i]) \cdot [\alpha(x_i) - \alpha(x_{i-1})]
+        \end{equation}
+        \begin{equation}
+            L(P,f,\alpha) = \sum_{i=1}^n \inf f([x_{i-1}, x_i]) \cdot [\alpha(x_i) - \alpha(x_{i-1})]
+        \end{equation}
+        \begin{equation}
+            \overline{\int_a^b} f(x) \dif \alpha(x) = \inf_P U(P, f, \alpha)
+        \end{equation}
+        \begin{equation}
+            \underline{\int_a^b} f(x) \dif \alpha(x) = \sup_P L(P, f, \alpha)
+        \end{equation}
+
+        If $\overline{\int_a^b} f(x) \dif \alpha(x) = \underline{\int_a^b} f(x) \dif \alpha(x)$, we say that $f$ is \textbf{Stieltjes-integrable} with respect to $\alpha$ on $[a,b]$, and write $f \in \mathscr{R}(\alpha)$.
+    \end{defi}
+
+    \begin{defi}
+        We say partition $P^*$ is a \textbf{refinement} of $P$ if $P^* \supseteq P$.
+    \end{defi}
+
+    \begin{theo}
+        If $P^*$ is a refinement of $P$, then
+        \begin{equation}
+            L(P,f,\alpha) \leq L(P^*, f, \alpha)
+        \end{equation}
+        \begin{equation}
+            U(P,f,\alpha) \geq U(P^*, f, \alpha)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        \begin{equation}
+            \underline{\int_a^b} f(x) \dif \alpha(x) \leq \overline{\int_a^b} f(x) \dif \alpha(x)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        $f \in \mathscr{R}(\alpha)$ on $[a,b]$ iff
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists P \ \left( U(P,f,\alpha)-L(P,f,\alpha) < \epsilon \right)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        Suppose $U(P,f,\alpha)-L(P,f,\alpha) < \epsilon$
+        \begin{enumerate}
+            \item $\forall P^* \supseteq P$
+            \begin{equation}
+                U(P^*,f,\alpha)-L(P^*,f,\alpha) \leq U(P,f,\alpha)-L(P,f,\alpha) < \epsilon
+            \end{equation}
+
+            \item If $s_i, t_i$ are arbitrary points in $[x_{i-1}, x_i]$, then
+            \begin{equation}
+                \sum_{i=1}^n | f(s_i)-f(t_i) | \cdot [\alpha(x_i)-\alpha(x_{i-1})] \leq U(P,f,\alpha)-L(P,f,\alpha) < \epsilon
+            \end{equation}
+
+            \item If $f \in \mathscr{R}(\alpha)$ and $t_i$ is a arbitrary point in $[x_{i-1}, x_i]$
+            \begin{equation}
+                \left| \sum_{i=1}^n f(t_i) \cdot [\alpha(x_i)-\alpha(x_{i-1})] - \int_a^b f \dif \alpha \right| < \epsilon
+            \end{equation}
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        Some types of Stieltjes-integrable functions on $[a,b]$.
+        \begin{enumerate}
+            \item $f$ is continuous on $[a,b]$.
+            \item $f$ is monotonic on $[a,b]$ and $\alpha$ is continuous on $[a,b]$.
+            \item $f$ is bounded on $[a,b]$ with finite many points of discontinuity on $[a,b]$, and $\alpha$ is continuous at every point at which $f$ is discontinuous.
+            \item $f(x) = \phi(g(x))$ where $g \in \mathscr{R}(\alpha)$, $m \leq g \leq M$ and $\phi$ is continuous on $[m,M]$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        Let $f \in \mathscr{R}$ on $[a,b]$, put
+        \begin{equation}
+            F(x) = \int_a^x f(t) \dif t \ \ \ \ x \in [a,b]
+        \end{equation}
+
+        Then 
+        \begin{enumerate}
+            \item $F$ is continuous.
+            \item $f$ is continuous at $x_0$ $\implies$ $F$ is differentiable at $x_0$ with $F'(x_0)=f(x_0)$.
+        \end{enumerate}
+        
+    \end{theo}
+
+    \begin{theo} (Fundamental theorem of calculus)
+        Let $f \in \mathscr{R}$ on $[a,b]$ and $F' = f$, then
+        \begin{equation}
+            \int_a^b f(x) \dif x = F(b)-F(a)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo} (Integration by parts)
+        Suppose $F'=f\in \mathscr{R}$ and $G'=g\in \mathscr{R}$, then
+        \begin{equation}
+            \int_a^b F(x)g(x) \dif x = F(b)G(b)-F(a)G(a)-\int_a^b f(x)G(x) \dif x
+        \end{equation}
+    \end{theo}

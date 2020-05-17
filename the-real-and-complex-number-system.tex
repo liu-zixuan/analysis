@@ -1,0 +1,164 @@
+\section{The Real and Complex Number System}
+    \begin{defi}
+        Let $S$ be a set. An \textbf{order} on $S$ is a relation, denoted by $<$, with the following two properties:
+        \begin{enumerate}
+            \item If $x, y \in S$ then one and only one of the statements
+            \begin{equation}
+                x < y, x = y, x > y
+            \end{equation}
+            is true.
+            \item if $x,y,z \in S, \ x < y, \ y < z$ then $x < z$.
+        \end{enumerate}
+    \end{defi} 
+
+    \begin{defi}
+        An \textbf{ordered set} is a set $S$ in which an order is defined.
+    \end{defi}
+    \begin{defi}
+        Suppose $E \subseteq S$. If
+        \begin{equation}
+            \exists \beta \in S \ \forall x \in E \ x \leq \beta ,
+        \end{equation}
+        $E$ is said to be bounded above, and $\beta$ is called an \textbf{upper bound} of $E$.
+    \end{defi}
+    \begin{defi}
+        $\alpha$ is the \textbf{least upper bound} of $E$ ($\alpha = \sup E$) if
+        \begin{enumerate}
+            \item $\alpha$ is an upper bound of $E$.
+            \item if $\gamma < \alpha$ then $\gamma$ is not an upper bound of $E$.
+        \end{enumerate}
+    \end{defi}
+    \begin{defi}
+        An ordered set $S$ is said to have the \textbf{least-upper-bound property} if the following is true:
+        \begin{equation*}
+            \forall E \subseteq S \ \left(
+                \begin{cases}
+                    E \neq \emptyset \\
+                    E \text{ is bounded above}
+                \end{cases}
+                \implies \exists x \in S \ x = \sup E
+            \right)
+        \end{equation*}
+    \end{defi}
+
+    \begin{theo}
+        Every ordered set with the least-upper-bound property also has the \textbf{greatest-lower-bound property}.
+    \end{theo}
+    
+    \begin{defi}
+        A \textbf{field} is a set $F$ with two operations, called addition and multiplication, which satisfy the following so-called ``field axioms'' (A), (M) and (D).
+        \begin{description}
+            \item[A1] $\forall x, y \in F, \ x+y \in F$.
+            \item[A2] $\forall x,y \in F, \ x+y=y+x$.
+            \item[A3] $\forall x,y,z \in F, \ (x+y)+z=x+(y+z)$.
+            \item[A4] F contains an element $0$ such that $\forall x\in F, \ 0 + x = x$.
+            \item[A5] To $\forall x \in F$ corresponds an element $-x \in F$ such that $x + (-x) = 0$.
+            \item[M1] $\forall x, y \in F, \ xy \in F$.
+            \item[M2] $\forall x,y \in F, \ xy=yx$.
+            \item[M3] $\forall x,y,z \in F, \ (xy)z=x(yz)$.
+            \item[M4] F contains an element $1 \neq 0$ such that $\forall x\in F, \ 1x = x$.
+            \item[M5] To $\forall x \in F (x \neq 0)$ corresponds an element $1/x \in F$ such that $x (1/x) = 1$.
+            \item[D] $\forall x,y,z \in F, \ x(y+z)=xy+xz$.
+        \end{description}
+    \end{defi}
+    \begin{prop} Properties of fields.
+        \begin{enumerate}
+            \item $x+y=x+z \implies y=z$
+            \item $x+y=x \implies y=0$
+            \item $x+y=0 \implies y=-x$
+            \item $-(-x)=x$
+            \item $x \neq 0, xy=xz \implies y=z$
+            \item $x \neq 0, xy=x \implies y=1$
+            \item $x \neq 0, xy=1 \implies y=1/x$
+            \item $x \neq 0, 1/(1/x) = x$
+            \item $0x = 0$
+            \item $x \neq 0, y \neq 0 \implies xy \neq 0$
+            \item $(-x)y=-(xy)=x(-y)$
+            \item $(-x)(-y)=xy$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{defi}
+        An \textbf{ordered field} is a field $F$ which is also an ordered set, such that
+        \begin{enumerate}
+            \item $\forall x,y,z \in F, y<z \implies x+y < x+z$
+            \item $\forall x,y \in F, x>0, y>0 \implies xy > 0$
+        \end{enumerate}
+    \end{defi}
+
+    \begin{prop} Properties of ordered fields
+        \begin{enumerate}
+            \item $x > 0 \Longleftrightarrow -x < 0$
+            \item $x > 0, y < z \implies xy < xz$
+            \item $x < 0, y < z \implies xy > xz$
+            \item $x \neq 0 \implies x^2 > 0$, in particular $1 > 0$
+            \item $0 < x < y \implies 0 < 1/y < 1/x$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{theo}
+        There exists an ordered field $\R$ which has the least-upper-bound property and contains $\Q$ as a subfield.
+    \end{theo}
+    \begin{framed}
+        \begin{proof}
+        \begin{description}
+            \item[Step 1] We define the cut as any set $\alpha \subseteq \Q$ with the following 3 properties:
+            \begin{enumerate}
+                \item $\alpha$ is not empty, and $\alpha \neq \Q$.
+                \item If $p \in \alpha, q \in \Q$, and $q < p$, then $q \in \alpha$.
+                \item If $p \in \alpha$, then $p < r$ for some $r \in \alpha$.
+            \end{enumerate}
+            
+            We assume that $R$ consists of cuts. (Note that the elements themselves are not important. The operations on the elements are what we should focus on. It is OK to associate a number with a cut.)
+            
+            $p,q,r,\cdots$ will denote rational numbers, and $\alpha,\beta,\gamma,\cdots$ will denote cuts.
+
+            Define $r^* = \{ p \in \Q : p < r \}$. It is clear that $r^*$ is a cut.
+            
+            \item[Step 2] Define ``$\alpha < \beta$'' to mean: $\alpha$ is a proper subset of $\beta$. Thus $R$ is now an ordered set.
+            \item[Step 3] The ordered set $R$ has the least-upper-bound property. Let $A$ be a nonempty subset of $R$, and assume that $A$ is above bounded. Define
+            \begin{equation}
+                \gamma = \bigcup A
+            \end{equation}
+            It is not difficult to prove that $\gamma \in R$ and $\gamma = \sup A$.
+
+            \item[Step 4] Axioms of addition. Define $\alpha + \beta = \{ r+s : r \in \alpha, s \in \beta \}$. $0^*$ plays the role of $0$.
+
+            \item[Step 5] Axioms of multiplication. Define $R^+ = \{ \alpha \in R : \alpha > 0^* \}$. If $\alpha, \beta \in R^+$, define $\alpha \beta = \{ p : p \leq rs, r \in \alpha, s \in \beta, r > 0, s > 0 \}$.
+
+            \item[Step 6] The distribution law. 
+        \end{description}
+        
+        We have now completed the proof that $R$ is an ordered field with the least-upper-bound property.
+
+        Define $Q = \{ r^* : r \in \Q \}$. It is easy to find that the ordered field $Q$ is isomorphic to the ordered field $\Q$. This identification allows us to regard $\Q$ as a subfield of $R$.
+    \end{proof}
+    \end{framed}
+
+    \begin{theo}
+        (Archimedean property) If $x,y \in \R$, and $x > 0$, then there exists a positive integer $n$ such that
+        \begin{equation}
+            nx > y
+        \end{equation}
+    \end{theo}
+    
+    \begin{theo}
+        ($\Q$ is dense in $\R$) If $x, y \in \R$, and $x < y$, then there exists a $p \in \Q$ such that $x < p < y$.
+    \end{theo}
+
+    \begin{defi}
+        A \textbf{complex number} is an ordered pair $(a,b)$ of real numbers.
+    \end{defi}
+    \begin{defi}
+        The \textbf{complex field} is the set of complex numbers with the following definitions of addition and multiplication
+        \begin{align*}
+            &(a,b) + (c,d) = (a+c, b+d) \\
+            &(a,b)(c,d) = (ac-bd, ad+bc)
+        \end{align*}
+    \end{defi}
+
+    \begin{defi} The unit of imaginary part is denoted as
+        \begin{equation}
+            i = (0, 1)
+        \end{equation}
+    \end{defi}

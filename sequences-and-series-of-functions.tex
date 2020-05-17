@@ -1,0 +1,75 @@
+\section{Sequences and Series of Functions}
+    \begin{defi}
+        Suppose $\{f_n\}$ is a sequence of functions defined on a set $E$. 
+        
+        If $\forall x \in E$, $f_n(x)$ converges, we can define a \textbf{limit function}
+        \begin{equation}
+            f(x) = \lim_{n \to \infty} f_n(x) \ \ \ \ x \in E
+        \end{equation}
+
+        If $\forall x \in E$, $\sum f_n(x)$ converges, we can define a \textbf{sum function}
+        \begin{equation}
+            F(x) = \sum f_n(x) \ \ \ \ x \in E
+        \end{equation}
+    \end{defi}
+
+    The main problem is that if the important properties are preserved when under those limit operations.
+
+    Some examples
+    \begin{enumerate}
+        \item Double sequence
+        \begin{equation}
+            s_{m,n} = \frac{m}{m+n}
+        \end{equation}
+        \begin{equation}
+            \lim_{n \to \infty}\lim_{m \to \infty} s_{m,n} = 1
+        \end{equation}
+        \begin{equation}
+            \lim_{m \to \infty}\lim_{n \to \infty} s_{m,n} = 0
+        \end{equation}
+
+        \item Let
+        \begin{equation}
+            f_n(x) = \frac{x^2}{(1+x^2)^n}
+        \end{equation}
+        \begin{equation}
+            F(x) = \sum f_n(x) = \begin{cases}
+                0 & x = 0 \\
+                1+x^2 & x \neq 0
+            \end{cases}
+        \end{equation}
+        We can see that $\{f_n\}$ are continuous functions, but $F$ is not continuous at $0$.
+    \end{enumerate}
+
+    \begin{defi}
+        \textbf{Uniformly convergence}:
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists N \in \Z \ \forall x \in E \ ( n \geq N \implies  d(f_n(x), f(x)) < \epsilon)
+        \end{equation}
+    \end{defi}
+
+    \begin{defi}
+        Suppose $f_n \to f$, then $f_n \to f$ uniformly iff
+        \begin{equation}
+            \sup_{x \in E} d(f_n(x), f(x)) \to 0
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Some properties of uniform convergence
+        \begin{enumerate}
+            \item Suppose $f_n \to f$ uniformly on a set $E$ in a metric space. Let $x$ be a limit point of $E$, then
+            \begin{equation}
+                \lim_{t \to x}\lim_{n \to \infty} f_n(t) = \lim_{n \to \infty}\lim_{t \to x} f_n(t)
+            \end{equation}
+
+            \item $
+            \begin{cases}
+                \{f_n\} \text{ are continuous} \\
+                f_n \to f \text{ uniformly}
+            \end{cases}
+            \implies f \text{ is continuous}
+            $
+        \end{enumerate}
+        
+    \end{theo}

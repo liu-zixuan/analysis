@@ -1,0 +1,101 @@
+\documentclass[aps, pra, notitlepage, 10pt]{revtex4-1}
+
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage{amsthm}
+\usepackage{graphicx,color} % Include figure files
+\usepackage{dcolumn} % Align table columns on decimal point
+\usepackage{bm} % bold math
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{dsfont}
+\usepackage{framed}
+
+% https://tex.stackexchange.com/questions/124043/subsection-numbering-should-be-arabic-1-1-1-2-etc-not-a-b-c
+\makeatletter
+\renewcommand*{\thesection}{\arabic{section}}
+\renewcommand*{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand*{\p@subsection}{}
+\renewcommand*{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand*{\p@subsubsection}{}
+\makeatother
+
+% Abbreviations of LaTex commands
+\newcommand{\st}[1]{\mathbf{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\op}[1]{\operatorname{#1}}
+
+% Number systems
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% Sets
+\newcommand{\set}[1]{\mathsf{#1}} % sets
+\newcommand{\grp}[1]{\mathsf{#1}} % groups
+\newcommand{\reg}[1]{\mathsf{#1}} % registers
+\newcommand{\spc}[1]{\mathcal{#1}} % spaces
+\newcommand{\map}[1]{\mathcal{#1}} % mappings
+
+% Linear structures
+\newcommand{\Span}{\set{Span}}
+\newcommand{\Lin}{\set{Lin}}
+\newcommand{\Pos}{\set{Pos}}
+\newcommand{\CP}{\set{CP}}
+\newcommand{\Herm}{\set{Herm}}
+\newcommand{\D}{\set{D}} % density matrices
+\newcommand{\Proj}{\set{Proj}}
+\newcommand{\U}{\set{U}}
+\newcommand{\Diag}{\set{Diag}}
+\newcommand{\St}{\set{St}}
+\newcommand{\Eff}{\set{Eff}}
+\newcommand{\Pur}{\set{Pur}}
+\newcommand{\Transf}{\set{Transf}}
+\newcommand{\Chan}{\set{Chan}}
+
+% Functions on operators
+\newcommand{\Tr}{\op{Tr}}
+\newcommand{\rank}{\op{Rank}}
+\newcommand{\im}{\op{Im}}
+\newcommand{\myker}{\op{Ker}}
+
+% Logic symbols
+\newcommand{\T}{\mathsf{T}}
+\newcommand{\F}{\mathsf{F}}
+
+% Integral symbols
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+
+% Dirac symbols
+\renewcommand{\>}{\rangle}
+\newcommand{\<}{\langle}
+\newcommand{\kk}{\>\!\>}
+\newcommand{\bb}{\<\!\<}
+
+% Proofs
+\newcommand{\Proof}{{\bf Proof.~}}
+\newcommand{\Solution}{{\bf Solution.~}}
+% \newcommand{\qed}{$\blacksquare$}
+
+% Miscellaneous
+\newcommand{\myuparrow}{\mathord{\uparrow}}
+\newcommand{\mydownarrow}{\mathord{\downarrow}}
+\newcommand{\h}{\scriptstyle \frac 1 2}
+\newcommand{\half}{\frac 1 2}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+\newcommand{\arccot}{\mathrm{arccot}\,}
+
+% Equation numbering
+\numberwithin{equation}{section}
+
+% Environments
+\newtheorem{theo}{Theorem}[section]
+\newtheorem{defi}{Definition}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem{ex}{Exercise}[section]
+\newtheorem{lemma}[theo]{Lemma} % In this case, the even though a new environment called lemma is created, it will use the same counter as the theo environment.
+\newtheorem{prop}[theo]{Proposition}
+\newtheorem{proper}[theo]{Property}
+\newtheorem{cor}{Corollary}[theo] % A environment called cor is created, the counter of this new environment will be reset every time a new theorem environment is used.

@@ -1,0 +1,75 @@
+\section{Differentiation of Real Functions}
+    
+    \begin{defi}
+        $f: [a,b] \to \R$. For a fixed $x \in [a,b]$, form the quotient
+        \begin{equation}
+            \phi(t) = \frac{f(t)-f(x)}{t-x} \ \ \ \ (a<t<b, \ t \neq x)
+        \end{equation}
+        and define 
+        \begin{equation}
+            f'(x) = \lim_{t \to x} \phi(t)
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        $f$ is \textbf{differentiable} at $x$ $\implies$ $f$ is continuous at $x$.
+    \end{theo}
+
+    Examples
+    \begin{enumerate}
+        \item $f(x) = 
+            \begin{cases}
+                \sin \frac{1}{x} & x \neq 0 \\
+                0 & x = 0
+            \end{cases}
+        $ is not continuous at $0$.
+        \item $f(x) = 
+            \begin{cases}
+                x\sin \frac{1}{x} & x \neq 0 \\
+                0 & x = 0
+            \end{cases}
+        $ is continuous at $0$ but not differentiable at $0$.
+        \item $f(x) = 
+            \begin{cases}
+                x^2 \sin \frac{1}{x} & x \neq 0 \\
+                0 & x = 0
+            \end{cases}
+        $ is continuous and differentiable at $0$.
+    \end{enumerate}
+    
+
+    \begin{theo}
+        Suppose $f,g$ are differentiable. Then $f+g$, $fg$ and $f/g$ are differentiable.
+        \begin{enumerate}
+            \item $(f+g)' = f'+g'$
+            \item $(fg)' = f'g+fg'$
+            \item $(\frac{f}{g})' = \frac{f'g-fg'}{g^2} \ \ \ \ (g \neq 0)$
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        If $h(x) = g(f(x))$, then $h'(x) = g'(f(x)) \cdot f'(x)$.
+    \end{theo}
+
+    \begin{theo}
+        $f$ has a local maximum at a point $x \in (a, b)$, and if $f'(x)$ exists, then $f'(x) = 0$.
+    \end{theo}
+
+    \begin{theo}
+        (Generalized mean value theorem) If $f$ and $g$ are continuous real functions on $[a,b]$ which are differentiable in $(a,b)$, then there is a point $x \in (a,b)$ at which 
+        \begin{equation}
+            [f(b)-f(a)] g'(x) = [g(b)-g(a)] f'(x)
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        (Taylor's theorem) Suppose $f : [a,b] \to \R$, $n \in \N^*$, $f^{(n-1)}$ is continuous on $[a,b]$, and $f^{(n)}$ exists on $(a,b)$. Let $\alpha, \beta \in [a,b]$ be two distinct points and define
+        \begin{equation}
+            P(t) = \sum_{k=0}^{n-1} \frac{f^{(k)}(\alpha)}{k!} (t-\alpha)^k
+        \end{equation}
+
+        Then $\exists x \in (\alpha, \beta)$ such that 
+        \begin{equation}
+            f(\beta) = P(\beta) + \frac{f^{(n)}(x)}{n!} (\beta-\alpha)^n
+        \end{equation}
+    \end{theo}

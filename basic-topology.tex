@@ -1,0 +1,137 @@
+\section{Basic Topology}
+    \begin{defi}
+        A \textbf{metric space} is a set $X$ with a distance function (metric) 
+        \begin{equation}
+            d : X \times X \to \R
+        \end{equation} 
+        defined on it such that $\forall p,q,r \in X$
+        \begin{enumerate}
+            \item $d(p, q) \geq 0$ with equality iff $p=q$
+            \item $d(p,q) = d(q,p)$
+            \item $d(p,q) \leq d(p,r) + d(r,p)$
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi} Let $X$ be a metric space and $E$ be a subset of $X$.
+        \begin{itemize}
+            \item Neighborhood: The neighborhood of a point $p \in X$ is defined as $N_r(p) = \{ q \in X: d(p,q) < r, r > 0 \}$
+            \item Limit point (\href{https://en.wikipedia.org/wiki/Limit_point}{wikipedia}): A point $p \in X$ is a limit point of the set $E$ if every neighborhood of $p$ contains at least one point $q \neq p$ such that $q \in E$. (An equivalent definition: every neighborhood of $p$ contains infinitely many points of $E$. A third definition: there is a sequence of points in $E \backslash \{p\}$ whose limit is $p$. )
+            \item Isolated point: A point $p \in X$ is a isolated point of the set $E$ if $p \in E$ and $p$ is not a limit point of $E$.
+            \item Interior point: A point $p \in X$ is a interior point of the set $E$ if there exists a neighborhood $N(p)$ such that $N(p) \subseteq E$.
+            \item Closed: $E$ is closed if every limit point of $E$ is a point of $E$. (Both $\emptyset$ and $X$ are closed.)
+            \item Open: $E$ is open if every point of $E$ is an interior point. (Both $\emptyset$ and $X$ are open.)
+            \item Complement: $E^c = \{ p \in X : p \notin E \}$.
+            \item Perfect: $E$ is perfect if $E$ is closed and every point of $E$ is a limit point of $E$.
+            \item Bounded: $E$ is bounded if it is contained in a neighborhood $N_r(q)$ of a point $q \in X$.
+            \item Dense: $E$ is dense in $X$ if $\forall p \notin E$ is a limit point of $E$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{theo}
+        A set $E$ is \textbf{open} iff its complement is closed.
+    \end{theo}
+    \begin{theo}
+        A set $E$ is \textbf{closed} iff its complement is open.
+    \end{theo}
+
+    \begin{defi}
+        $X$ is a metric space, $E \subseteq X$, $E'$ denotes the set of all limit points of $E$ in X. The closure of $E$ is defined as
+        \begin{equation}
+            \overline{E} = E \cup E'
+        \end{equation}
+    \end{defi}
+
+    This closure property can be described as a relation $R \subseteq X^{\infty} \times X$ on $X$, where $R$ is the set of tuples consisting of a convergent sequence $\{p_i\}_{i=1}^{\infty}$ of points on $X$ and its limit point $p$. For a closed set $E$, if $p_1, p_2, \cdots, p_{\infty} \in E$ and $(p_1, p_2, \cdots, p_{\infty}, p) \in R$, then $p \in E$. 
+    
+    Thus $\overline{E}$ is the smallest closed set which contains $E$, and $\overline{E}$ is the intersection of all closed sets which contains $E$.
+
+    \begin{theo}
+        $\{G_i\}$ are open sets, $\{F_i\}$ are closed sets, $n \in \N$.
+        \begin{enumerate}
+            \item $\bigcup_{i} G_i$ is open.
+            \item $\bigcap_{i} F_i$ is closed.
+            \item $\bigcap_{i=1}^n G_i$ is open.
+            \item $\bigcup_{i=1}^n F_i$ is closed.
+        \end{enumerate}
+        Remark : $\bigcap_{i=1}^{\infty} G_i$ may not be open, for instance, $G_i = (-\frac{1}{i}, \frac{1}{i}), \ \bigcap_{i=1}^{\infty} G_i = \{0\}$. Similarily, $\bigcup_{i=1}^\infty F_i$ may not be closed, for instance, $F_i = (-\infty, -\frac{1}{i}]\cup [\frac{1}{i}, \infty), \ \bigcup_{i=1}^{\infty} F_i = (-\infty, 0) \cup (0, +\infty)$.
+    \end{theo}
+
+    \begin{theo}
+        Suppose $E \subseteq Y \subseteq X$, $E$ is open relative to $Y$ iff $E = Y \cap G$ for some open subset $G$ of $X$.
+    \end{theo}
+    \begin{framed}
+    \begin{proof}
+
+        (1) If $E = Y \cap G$ for some open subset $G \subseteq X$, then $\forall p \in E$, there exists an $r_p > 0$ such that 
+        \begin{equation}
+            \{q \in X : d(p, q) < r_p\} \subseteq G
+        \end{equation}
+        
+        It follows that
+        \begin{equation}
+            \{q \in Y : d(p, q) < r_p\} = \{q \in X : d(p, q) < r_p\} \cap Y \subseteq (G \cap Y) = E
+        \end{equation}
+
+        (2) If $E$ is open relative to $Y$, then
+        \begin{equation}
+            \forall p \in E \ \exists r_p > 0 \ \left( \{q \in Y : d(p, q) < r_p\} \subseteq E \right)
+        \end{equation}
+        
+        Define $V_p = \{ q \in X : d(p, q) < r_p \}$
+        and let $G = \bigcup_{p \in E} V_p$.
+        It is clear that $G$ is an open set and $p \in G$. Thus $E \subseteq Y \cap G$. And
+        \begin{equation}
+            Y \cap G = \bigcup_{p \in E} \{ q \in Y : d(p, q) < r_p \} \subseteq E
+        \end{equation}
+        Thus $E = Y \cap G$.
+    \end{proof}
+    \end{framed}
+
+    \begin{rem}
+        It is interesting that $E$ is open relative to $Y$ without being open relative to $X$. The property of being open thus depends on the space in which $E$ is embedded. 
+    \end{rem}
+
+    \begin{defi}
+        \textbf{Open cover} of a set $E$: $\{G_i\}$ are open sets, $E \subseteq \bigcup_i G_i$.
+    \end{defi}
+
+    \begin{defi}
+        A subset $K$ of a metric space is \textbf{compact} iff every open cover of $K$ contains a finite subcover.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $K \subseteq Y \subseteq X$, then $K$ is compact relative to $X$ iff $K$ is compact relative to $Y$.
+    \end{theo}
+    \begin{framed}
+        \begin{proof}
+            
+        (1) Let $\{V_i\}$ be a open cover of $K$ relative to $Y$. We know that $V_i = Y \cap G_i$ for some open set relative to $X$. Then we have a finite subcover of $K$, $\{G_i\}_{i=1}^n$, relative to $X$, that is $K \subseteq \bigcup_{i=1}^n G_i$. Thus, noticing that $K \subseteq Y$, $K \subseteq \bigcup_{i=1}^n V_i$.
+        
+        (2) Obviously.
+        \end{proof}
+
+    \end{framed}
+
+    \begin{theo}
+        Compact subsets of a metric space are closed.
+    \end{theo}
+    \begin{framed}
+        \begin{proof}
+            Let $X$ be a compact subset of metric space $X$ and let $p \in K^c$, $q \in K$. Suppose $V_q$ and $W_q$ are neighborhoods of $p$ and $q$ of radius less that $\frac{1}{2} d(p, q)$. 
+            
+            $\{W_q\}_{q \in K}$ is an open cover of $K$ $\implies$ there are a finitely many points $q_1, \cdots, q_n$ such that $K \subseteq W_{q_1} \cup \cdots \cup W_{q_n} = W$. $V = V_{q_1} \cap \cdots \cap V_{q_n}$ is a neighborhood of $p$ and $V \cap W = \emptyset$ $\implies$ $p$ is an interior point $\implies$ $K^c$ is open thus $K$ is closed.
+        \end{proof}
+    \end{framed}
+
+    \begin{theo}
+        Closed subsets of compact sets are compact.
+    \end{theo}
+    \begin{framed}
+        \begin{proof}
+            $F \subseteq K \subseteq X$. $F$ is closed relative to $X$, $K$ is compact. Let $\{V_i\}$ be a open cover of $F$, then 
+            
+            $\{V_i\} \cup \{F^c\}$ is an open cover of $K$ $\implies$ a finite subset $\Omega$ of $\{V_i\} \cup \{F^c\}$ is an open cover of $K$ and thus $F$. 
+            
+            $\Omega \backslash \{F^c\}$ is still an open cover of $F$ $\implies$ a finite subset of $\{V_i\}$ is an open cover of $K$.
+        \end{proof}
+    \end{framed}

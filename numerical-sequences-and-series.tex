@@ -1,0 +1,322 @@
+\section{Numerical Sequences and Series}
+    \subsection{Numerical Sequences}
+    \begin{defi}
+        A sequence $\{p_n\}$ in a metric space $X$ is said to \textbf{converge} (in $X$) if there is a point $p \in X$ such that
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists N \in \N^* \ \forall n \in \N^* \ (n \geq N \implies d(p_n, p) < \epsilon)
+        \end{equation}
+    \end{defi}
+    \begin{theo}
+        Let $\{p_n\}$ be a sequence in metric space $X$.
+        \begin{enumerate}
+            \item $p_n \to p$ iff every neighborhood of $p$ contains $p_n$ for all but finitely many $n$.
+            \item $p_n \to p, \ p_n \to p' \implies p = p'$.
+            \item converge $\implies$ bounded
+            \item If $E \subseteq X$, $p$ is a limit point of $E$ $\Longleftrightarrow$ there is a sequence $\{p_n\} \subseteq E$ such that $p_n \to p$.
+            \item $\{d(p_n, p)\}$ is a sequence in $\R$. $p_n \to p$ iff $d(p_n, p) \to 0$ with the metric defined as $d(a,b) = | a-b |$.
+        \end{enumerate}
+    \end{theo}
+    \begin{theo}
+        Suppose $\{s_n\}$ and $\{t_n\}$ are complex sequence, and $s_n \to s$, $t_n \to t$. Then
+        \begin{enumerate}
+            \item $s_n + t_n \to s + t$
+            \item $s_nt_n \to st$
+            \item if $s_n \neq 0,\ n=0,1,\cdots$, then $\frac{1}{s_n} \to \frac{1}{s}$
+        \end{enumerate}
+    \end{theo}
+
+    \begin{defi}
+        Let $\{n_i\}$ be a sequence of positive integers such that $n_1 < n_2 < \cdots $. Then $\{p_{n_i}\}$ is a \textbf{subsequence} of $\{ p_n \}$.
+    \end{defi}
+
+    \begin{theo}
+        The subsequential limits of a sequence $\{p_n\}$ in a metric space $X$ forms a closed subset of $X$.
+    \end{theo}
+    \begin{framed}
+        \begin{proof}
+            Let $E^*$ be the set of the subsequential limits of $\{p_n\}$ and let $q$ be a limit point of $E^*$. We need to show that there is a subsequence of $\{p_n\}$ which converges to $q$.
+
+            \begin{enumerate}
+                \item Choose $p_{n_1} \neq q$, and put $\delta = d(q, p_{n_1})$.
+
+                \item Suppose $p_{n_1}, \cdots, p_{n_i}$ are chosen. Then 
+            \begin{itemize}
+                \item $q$ is a limit point of $E^*$ $\implies$ there exists a point $x \in E^*$ such that $d(x, q) < 2^{-1-i} \delta$.
+                \item $x \in E^*$ $\implies$ there exists $n_{i+1} > n_{i}$ such that $d(p_{n_{i+1}}, x) < 2^{-1-i} \delta$.
+            \end{itemize}
+            
+            Thus $d(q, p_{n_{i+1}}) \leq d(x,q)+d(p_{n_{i+1}}, x) < 2^{-i} \delta$
+
+            \item By induction, we construct a sequence $\{p_{n_{i}} \}$ that converges to $q$. Thus $q \in E^*$.
+            \end{enumerate}
+        \end{proof}
+    \end{framed}
+
+    \begin{defi}
+        A sequence $\{p_n\}$ in a metric space $X$ is said to be a \textbf{Cauchy sequence} if 
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists N \in \N^* \ \forall m,n \in \N^* \ (m,n \geq N \implies d(p_m, p_n) < \epsilon)
+        \end{equation}
+    \end{defi}
+
+    Obviously, every convergent sequence in a metrix space is Cauchy.
+
+    \begin{defi}
+        Let $E$ be a non-empty subset of a metric space $X$, the \textbf{diameter} of $E$ is defined as
+        \begin{equation}
+            \op{diam} E = \sup \{ d(p,q) : p, q \in E \}
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Let $E$ be a non-empty subset of a metric space $X$, then $\op{diam} \overline{E} = \op{diam} E$. 
+    \end{theo}
+
+    \begin{theo}
+        A sequence $\{p_n\}$ in a metric space $X$ is a Cauchy sequence iff
+        \begin{equation}
+            \lim_{N \to \infty} \op{diam} \{ p_N, p_{N+1}, \cdots \} = 0
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        If $\{K_n\}$ is a sequence of non-empty compact sets in $X$ such that 
+        \begin{equation}
+            \begin{cases}
+                K_n \supseteq K_{n+1} (n=1,2,\cdots) \\
+                \lim_{n \to \infty} \op{diam} K_n = 0 
+            \end{cases}
+            \implies \text{$\bigcap_1^\infty K_n$ consists of exactly one point.}
+        \end{equation} 
+    \end{theo}
+
+    \begin{defi}
+        A metric space in which every Cauchy sequence converges is said to be \textbf{complete}.
+    \end{defi}
+
+    \begin{theo}
+        Suppose $\{s_n\}$ is monotonic, then $\{s_n\}$ converges iff it is bounded.
+    \end{theo}
+
+    \begin{defi}
+        Let $\{s_n\}$ be a sequence of real numbers. 
+        
+        $s_n \to +\infty$ if
+        \begin{equation}
+            \forall M \in \R \ \exists N \in \N^* \ \forall n \in \N^* \ (n \geq N \implies s_n > M)
+        \end{equation}
+
+        $s_n \to -\infty$ if
+        \begin{equation}
+            \forall M \in \R \ \exists N \in \N^* \ \forall n \in \N^* \ (n \geq N \implies s_n < M)
+        \end{equation}
+
+        Let $E = \{ x \in [-\infty, \infty] : s_{n_k} \to x \}$, upper and lower limits of $\{s_n\}$ is defined as
+        \begin{equation}
+            \limsup_{n \to \infty} s_n = \sup E
+        \end{equation}
+        \begin{equation}
+            \liminf_{n \to \infty} s_n = \inf E
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Let $E = \{ x \in [-\infty, \infty] : s_{n_k} \to x \}$. 
+        \begin{enumerate}
+            \item $\limsup_{n \to \infty} s_n \in E$.
+            \item If $x > \limsup_{n \to \infty} s_n$, then $\exists N \in \N^* \ \forall n \in \N^* \ \left( n \geq N \implies s_n < x \right)$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}
+        If $s_n \leq t_n$ for $n \geq N$, where $N$ is fixed, then
+        \begin{equation}
+            \liminf_{n \to \infty} s_n \leq \liminf_{n \to \infty} t_n
+        \end{equation}
+        \begin{equation}
+            \limsup_{n \to \infty} s_n \leq \limsup_{n \to \infty} t_n
+        \end{equation}
+    \end{theo}
+
+    \subsection{Series}
+    \begin{defi}
+        With a sequence $\{ a_n \} \subseteq \C$, we call $\sum a_n$ a \textbf{series}.
+        \begin{equation}
+            \sum a_n = a_1 + a_2 + \cdots
+        \end{equation}
+    \end{defi}
+
+    \begin{rem}
+        If $\{ a_n \}$ start from $a_0$, then $\sum a_n = a_0 + a_1 + a_2 + \cdots$. We often associate a partial sum sequence $\{A_n\}$ to a series $\sum a_n$ where $A_n = \sum_{i=1}^n a_n$. We say $\sum a_n$ converges if the corresponding partial sum sequence $\{A_n\}$ converges.
+    \end{rem}
+
+    \begin{theo} Some theorems about series.
+        \begin{enumerate}
+            \item (Cauchy criterion) $\sum a_n$ converges iff 
+            \begin{equation}
+                \forall \epsilon > 0 \ \exists N \in \N^* \ \forall m, n \in \N^* \ \left(m \geq n \geq N \implies \left| \sum_{k=n}^m a_k \right| \leq \epsilon \right)
+            \end{equation}
+            \item $\sum a_n$ converges $\implies$ $a_n \to 0$
+            \item If $\forall n \in \N^*, \ a_n \in \R^+$ then $\sum a_n$ converges iff $\{A_n\}$ is bounded.
+
+            \item If $| a_n | \leq c_n$ for $n \geq N_0$, then $\sum c_n$ converges $\implies$ $\sum a_n$ converges.
+
+            \item If $a_n \geq d_n \geq 0$ for $n \geq N_0$, then $\sum d_n$ diverges $\implies$ $\sum a_n$ diverges.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{defi}
+        The number $e$ is defined to be
+        \begin{equation}
+            e = \sum_{n=0}^{\infty} \frac{1}{n!}
+        \end{equation}
+    \end{defi}
+
+    $s_n = \sum_{i=0}^n \frac{1}{n!} \leq 1 + 1 + \frac{1}{2} + \cdots + \frac{1}{2^{n-1}} < 3 \implies \{s_n\}$ converges. Thus the definition makes sense.
+
+    \begin{theo}
+        Another definition of $e$.
+        \begin{equation}
+            (1+\frac{1}{n})^n \to e
+        \end{equation}
+    \end{theo}
+    \begin{framed}
+        \begin{proof}
+            Let $s_n = \sum_{k=0}^n \frac{1}{n!}$, $t_n = (1+\frac{1}{n})^n$.
+
+            Using binomial theorem, we get
+            \begin{equation}
+                \begin{cases}
+                    \forall n \in \N^* \ \ t_n \leq s_n \\
+                    \forall m \in \N^* \ \ \liminf_{k \to \infty} t_k \geq s_m
+                \end{cases}
+                \implies e \leq \liminf_{k \to \infty} t_k \leq \limsup_{k \to \infty} t_k \leq e
+                \implies \lim_{k \to \infty} t_k = e
+            \end{equation}
+        \end{proof}
+    \end{framed}
+
+    \begin{theo}
+        If a series converges absolutely, then it converges. i.e.
+        \begin{equation}
+            \sum |a_n| \text{ converges} \implies \sum a_n \text{ converges}
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        [Root test]
+        \begin{equation}
+            \alpha = \limsup_{n \to \infty} \sqrt[n]{|a_n|}
+        \end{equation}
+        \begin{enumerate}
+            \item $\alpha < 1 \implies \sum a_n$ converges.
+            \item $\alpha > 1 \implies \sum a_n$ diverges.
+        \end{enumerate}
+    \end{theo}
+
+    Consider $\sum \frac{1}{n}$ and $\sum \frac{1}{n^2}$, both have $\alpha=1$ but the first diverges and the second converges.
+
+    \begin{theo} [Ratio test]
+        \begin{enumerate}
+            \item $\limsup_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| < 1 \implies$ $\sum a_n$ converges.
+            \item $\exists N_0 \in \Z \ \forall n \geq N_0 \ \left| \frac{a_{n+1}}{a_n} \right| \geq 1 \implies$ $\sum a_n$ diverges.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo} \label{theo:1}
+        Let $\{c_n\} \subseteq \R^+$, then
+        \begin{equation}
+            \liminf_{n \to \infty} \left|\frac{c_{n+1}}{c_n}\right| \leq \liminf_{n \to \infty} \sqrt[n]{|c_n|} \leq \limsup_{n \to \infty} \sqrt[n]{|c_n|} \leq \limsup_{n \to \infty} \left|\frac{c_{n+1}}{c_n}\right|
+        \end{equation}
+    \end{theo}
+
+    \begin{rem}
+        Theorem \ref{theo:1} indicates that root test is more powerful than ratio test. However, using ratio test is generally easier than using root test. Besides, root test and ratio test both deal with series converges absolutely.
+    \end{rem}
+
+    \begin{defi}
+        Given $\{c_n\} \in \C$, $z \in \C$, $\sum_{n=0}^{\infty} c_n z^n$ is called a \textbf{power series}.
+
+        \begin{equation}
+            \frac{1}{R} = \limsup_{n \to \infty} \sqrt[n]{|c_n|}
+        \end{equation}
+        \begin{equation}
+            \alpha = \limsup_{n \to \infty} \sqrt[n]{|c_nz^n|} = \frac{|z|}{R}
+        \end{equation}
+
+        We call $R$ the radius of convergence of $\sum c_n z^n$.
+    \end{defi}
+
+    \begin{theo}
+        Multiplication of power series
+        \begin{align*}
+            \sum c_n z^n 
+            &= \left(\sum a_n z^n \right)\left(\sum b_n z^n \right) \\
+            &= a_0b_0 + (a_0b_1 + a_1b_0)z + (a_0b_2 + a_1b_1 + a_2b_0)z^2 + \cdots
+        \end{align*}
+
+        Thus, we define the product of two series as
+        \begin{equation}
+            c_n = \sum_{k=0}^n a_kb_{n-k}
+        \end{equation}
+    \end{theo}
+
+    \begin{theo} Let $\{a_n\} \subseteq \C$, $A_n = \sum_{i=1}^n a_n$, and $\{b_n\} \subseteq \R$.
+        \begin{equation}
+            \begin{cases}
+            \{ A_n \} \text{ is bounded} \\
+            b_0 \geq b_1 \geq ... \\
+            b_n \to 0
+            \end{cases} \implies \sum a_n b_n \text{ converges.}
+        \end{equation}
+    \end{theo}
+
+    \begin{cor}
+        (Alternating series) Let $\{a_n\} \subseteq \R$.
+        \begin{equation}
+            \begin{cases}
+            a_{2m-1} \geq 0, \ a_{2m} \leq 0, \ \ m = 1,2,\cdots \\
+            |a_1| \geq |a_2| \geq ... \\
+            a_n \to 0
+            \end{cases} \implies \sum a_n \text{ converges.}
+        \end{equation}
+    \end{cor}
+
+    \begin{theo}
+        \begin{equation}
+            \begin{cases}
+                \sum a_n \text{ converges absolutely} \\
+                \sum a_n = A \\
+                \sum b_n = B \\
+                c_n = \sum_{k=0}^n a_k b_{n-k}
+            \end{cases}
+            \implies \sum c_n = AB
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        \begin{equation}
+            \begin{cases}
+                \sum a_n = A \\
+                \sum b_n = B \\
+                c_n = \sum_{k=0}^n a_k b_{n-k} \\
+                \sum c_n = C
+            \end{cases}
+            \implies C = AB
+        \end{equation}
+    \end{theo}
+
+    \begin{defi}
+        Let $\{k_n\}$ be a 1-to-1 function from $\N^*$ to $\N^*$. Then $\sum a_{k_n}$ is called a rearrangement of $a_n$.
+    \end{defi}
+
+    \begin{theo}
+        Let $\sum a_n$ be a series of real numbers which converges non-absolutely. Suppose $-\infty \leq \alpha \leq \beta \leq \infty$. Then there exists a rearrangement $\sum a'_n$ with partial sum $A'_n$ such that
+        \begin{equation}
+            \liminf_{n \to \infty} A'_n = \alpha \quad \limsup_{n \to \infty} A'_n = \beta
+        \end{equation}
+    \end{theo}
+
+    \begin{theo}
+        absolutely converge $\implies$ every rearrangement converges to the same sum
+    \end{theo}

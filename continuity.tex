@@ -1,0 +1,142 @@
+\section{Continuity}
+    
+    \begin{defi}
+        Let $X$ and $Y$ be metric spaces; suppose $E \subseteq X$, $f: E \to Y$, and $p$ is a limit point of $E$. We write 
+        \begin{equation}
+            f(x) \to q \text{ as } x \to p \text{ or } \lim_{x \to p} f(x) = q
+        \end{equation}
+        if there is a point $q \in Y$ such that
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in E \backslash \{p\} \ \left( d_X(x,p) < \delta \implies d_Y(f(x),q) < \epsilon \right)
+        \end{equation}
+    \end{defi}
+
+    \begin{rem}
+        In the definition, $f$ may not have definition at $p$. Using a subset $E$ of a metric space $X$ loses nothing of interest. This simplifies statements and proofs of some theorems.
+    \end{rem}
+
+    \begin{theo}
+        $f(x) \to q \text{ as } x \to p$ iff
+        \begin{equation}
+            \forall \{p_n\} \subseteq E \backslash \{p\} \ (p_n \to p \implies f(p_n) \to q)
+        \end{equation}
+    \end{theo}
+
+    \begin{cor}
+        As $x \to p,\ f(x) \to q,\ f(x) \to q' \implies q = q'$.
+    \end{cor}
+
+    \begin{theo}
+        As $x \to p$, $f(x) \to A$ and $g(x) \to B$. Then
+        \begin{enumerate}
+            \item $(f+g)(x) \to A+B$
+            \item $(fg)(x) \to AB$
+            \item $(\frac{f}{g})(x) \to \frac{A}{B} \ \ (B \neq 0)$
+        \end{enumerate}
+    \end{theo}
+    
+    \begin{defi}
+        Let $X$ and $Y$ be metric spaces; suppose $E \subseteq X$, $f: E \to Y$, and $p \in E$. $f$ is said to be continuous at $p$ if
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in E \ \left( d_X(x,p) < \delta \implies d_Y(f(x),f(p)) < \epsilon \right)
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        $f$ is continuous at $p$ iff
+        \begin{equation}
+            \forall \{p_n\} \subseteq E \ (p_n \to p \implies f(p_n) \to f(p))
+        \end{equation}
+    \end{theo}
+
+    \begin{rem}
+        If $p$ is an isolated point of $E$, then by definition $f$ is continuous at $p$.
+    \end{rem}
+
+    \begin{theo}
+        If $p$ is a limit point of $E$, then $f$ is continuous at $p$ iff $f(x) \to f(p)$ as $x \to p$.
+    \end{theo}
+
+    \begin{theo}
+        $f: X \to Y$ is continuous on $X$ iff $\forall$ open set $V \subseteq Y$, $f^{-1}(V) \subseteq X$ is open.
+    \end{theo}
+    \begin{cor}
+        $f: X \to Y$ is continuous on $X$ iff $\forall$ closed set $C \subseteq Y$, $f^{-1}(C) \subseteq X$ is closed.
+    \end{cor}
+
+    \begin{defi}
+        $f: E \to \R^k$ is said to be \textbf{bounded} if
+        \begin{equation}
+            \forall x \in E \ \exists M \in \R \ ( | f(x) | < M )
+        \end{equation}
+    \end{defi}
+
+    \begin{theo}
+        Let $X$ be a compact metric space, $Y$ be a metric space, $f: X \to Y$ is a continuous mapping. Then $f(X)$ is compact.
+    \end{theo}
+
+    \begin{theo}
+        $f: E \to \R^k$ is continuous on $E$, and $E$ is compact. Then $f(X)$ is closed and bounded.
+    \end{theo}
+
+    \begin{theo}
+        $f: E \to \R$ is continuous on $E$, and $E$ is compact. Then there exists points $p, q \in E$ such that $f(p) = \sup f(X)$ and $f(q) = \inf f(X)$.
+    \end{theo}
+
+    \begin{defi}
+        \textbf{Uniformly continuous}
+        \begin{equation}
+            \forall \epsilon > 0 \ \exists \delta > 0 \ \forall p,q \in E \ \left(d_X(p,q) < \delta \implies d_Y(f(p),f(q)) < \epsilon \right)
+        \end{equation}
+    \end{defi}
+    \begin{theo}
+        Uniformly continuous
+        \begin{equation}
+            \forall \{p_n\}, \{q_n\} \subseteq E \ \left(d_X(p_n, q_n) \to 0 \implies d_Y(f(p_n), f(q_n)) \to 0 \right)
+        \end{equation}
+    \end{theo}
+    \begin{framed}
+        \begin{proof}
+            (1) Suppose $f$ is uniformly continuous, then by definition
+            \begin{equation}
+                \forall \epsilon > 0 \ \exists \delta > 0 \ \forall p,q \in E \ \left(d_X(p,q) < \delta \implies d_Y(f(p),f(q)) < \epsilon \right)
+            \end{equation}
+            Since $d_X(p_n, q_n) \to 0$, by definition
+            \begin{equation}
+                \forall \delta > 0 \ \exists N \in \Z \ \left( n \geq N \implies d_X(p_n, q_n) < \delta \right)
+            \end{equation}
+            Thus
+            \begin{equation}
+                \forall \epsilon > 0 \ \exists N \in \Z \ \left( n \geq N \implies d_Y(f(p_n) - f(q_n)) < \epsilon \right)
+            \end{equation}
+    
+            Hence, $d_Y(f(p_n) - f(q_n)) \to 0$.
+
+            (2) Conversely, suppose $f$ is not uniformly continuous, then
+            \begin{equation}
+                \exists \epsilon > 0 \ \forall \delta > 0 \ \exists p,q\in E \ \left( d_X(p,q) < \delta \ \land \ d_Y(f(p),f(q)) \geq \epsilon \right) 
+            \end{equation}
+            
+            Taking $\delta_n = 1/n$, we thus find a pair of sequences $\{p_n\}$ and $\{q_n\}$ such that
+            \begin{equation}
+                \forall n \in \Z \ (d_X(p_n, q_n) < 1/n) \text{ and } \exists \epsilon > 0 \ \forall n \in \Z \ [d_Y(f(p_n), f(q_n)) \geq \epsilon]
+            \end{equation}
+
+            In other words, $d_X(p_n, q_n) \to 0$ but $d_Y(f(p_n, q_n)) \not\to 0$.
+        \end{proof}
+    \end{framed}
+
+    \begin{theo}
+        Let $f$ be a continuous mapping of a compact metric space $X$ into a metric space $Y$. Then $f$ is uniformly continuous on $X$.
+    \end{theo}
+
+    \begin{theo}
+        Let $f$ be a continuous mapping of a compact metric space $X$ into a metric space $Y$, and if $E$ is a connected subset of $X$. Then $f(E)$ is connected.
+    \end{theo}
+
+    \begin{theo}
+        Let $f$ be a continuous real function on the interval $[a,b]$.
+        \begin{equation}
+            f(a) < c < f(b) \implies \exists x \in (a,b) \ \left( f(x)=c \right)
+        \end{equation}
+    \end{theo}
